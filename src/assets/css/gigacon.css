@@ -1,0 +1,635 @@
+/* FONTS */
+@font-face {
+  font-family: 'Giga';
+  font-display: block;
+  src: url('../fonts/gigacon/Giga.eot');
+  src:
+    url('../fonts/gigacon/Giga.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gigacon/Giga.ttf') format('truetype'),
+    url('../fonts/gigacon/Giga.svg#Giga') format('svg');
+}
+
+.gigacon {
+  position: relative;
+  top: 0;
+  display: inline-block;
+  font-family: 'Giga', 'Lato', Tahoma, Verdana, Segoe, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gigacon-edit::before {
+  content: '\e002';
+}
+
+.gigacon-search::before {
+  content: '\e004';
+}
+
+.gigacon-history::before {
+  content: '\e006';
+}
+
+.gigacon-people::before {
+  content: '\e007';
+}
+
+.gigacon-circle::before {
+  content: '\e008';
+}
+
+.gigacon-information::before {
+  content: '\e009';
+}
+
+.gigacon-envelope::before {
+  content: '\e010';
+}
+
+.gigacon-envelope-lg::before {
+  content: '\e011';
+}
+
+.gigacon-log-out::before {
+  content: '\e012';
+}
+
+.gigacon-search-lg::before {
+  content: '\e013';
+}
+
+.gigacon-camera-outline::before {
+  content: '\e014';
+}
+
+.gigacon-timer::before {
+  content: '\e015';
+}
+
+.gigacon-circle-arrow-left::before {
+  content: '\e016';
+}
+
+.gigacon-circle-arrow-right::before {
+  content: '\e017';
+}
+
+.gigacon-circle-arrow-up::before {
+  content: '\e018';
+}
+
+.gigacon-circle-arrow-down::before {
+  content: '\e019';
+}
+
+.gigacon-undo::before {
+  content: '\e020';
+}
+
+.gigacon-circle-outline-tick::before {
+  content: '\e021';
+}
+
+.gigacon-chevron-left::before {
+  content: '\e022';
+}
+
+.gigacon-chevron-right::before {
+  content: '\e023';
+}
+
+.gigacon-facebook::before {
+  content: '\e024';
+}
+
+.gigacon-x::before {
+  content: '\e025';
+}
+
+.gigacon-instagram::before {
+  content: '\e026';
+}
+
+.gigacon-rotate::before {
+  content: '\e027';
+}
+
+.gigacon-location::before {
+  content: '\e028';
+}
+
+/*TODO: Make indvidual icon for gigacon-profile - Profile Verification*/
+.gigacon-profile-verified::before,
+.gigacon-circle-tick::before {
+  content: '\e029';
+}
+
+.gigacon-location-lg::before {
+  content: '\e030';
+}
+
+.gigacon-circle-exclamation-mark::before {
+  content: '\e031';
+}
+
+.gigacon-padlock-locked::before {
+  content: '\e033';
+}
+
+.gigacon-refresh::before {
+  content: '\e034';
+}
+
+.gigacon-heart-logo::before {
+  content: '\e035';
+}
+
+.gigacon-heart::before {
+  content: '\e148';
+}
+
+.gigacon-tick::before {
+  content: '\e037';
+}
+
+.gigacon-triangle-down::before {
+  content: '\e038';
+}
+
+.gigacon-cross::before {
+  content: '\e039';
+}
+
+.gigacon-star::before {
+  content: '\e040';
+}
+
+.gigacon-vip::before {
+  content: '\e041';
+}
+
+.gigacon-credits::before {
+  content: '\e042';
+}
+
+.gigacon-exclamation-mark::before {
+  content: '\e043';
+}
+
+.gigacon-padlock-unlocked::before {
+  content: '\e044';
+}
+
+.gigacon-cog::before {
+  content: '\e045';
+}
+
+.gigacon-option-horizontal::before {
+  content: '\e046';
+}
+
+.gigacon-option-vertical::before {
+  content: '\e047';
+}
+
+.gigacon-user::before {
+  content: '\e048';
+}
+
+.gigacon-remove::before {
+  content: '\e049';
+}
+
+.gigacon-sign-in::before {
+  content: '\e050';
+}
+
+.gigacon-register::before {
+  content: '\e051';
+}
+
+.gigacon-ad::before {
+  content: '\e052';
+}
+
+.gigacon-video-camera::before {
+  content: '\e053';
+}
+
+.gigacon-speech-bubble::before {
+  content: '\e054';
+}
+
+.gigacon-camera::before {
+  content: '\e055';
+}
+
+.gigacon-rated-r::before {
+  content: '\e056';
+}
+
+.gigacon-airplane::before {
+  content: '\e057';
+}
+
+.gigacon-speech-bubble-smiley::before {
+  content: '\e058';
+}
+
+.gigacon-cocktail-glass::before {
+  content: '\e059';
+}
+
+.gigacon-article::before {
+  content: '\e060';
+}
+
+.gigacon-wink::before {
+  content: '\e061';
+}
+
+.gigacon-available::before {
+  content: '\e063';
+}
+
+.gigacon-msg-unread::before,
+.unread-message::before,
+.unread-reply::before {
+  content: '\e064';
+}
+
+.gigacon-msg-read::before,
+.m-message::before,
+.reply::before {
+  content: '\e065';
+}
+
+.gigacon-msg-replied::before,
+.replied-message::before,
+.replied-reply::before {
+  content: '\e066';
+}
+
+.gigacon-facebook-like::before {
+  content: '\e067';
+}
+
+.gigacon-folder::before {
+  content: '\e068';
+}
+
+.gigacon-plus-sign::before {
+  content: '\e069';
+}
+
+.gigacon-age-verified::before {
+  content: '\e070';
+}
+
+.gigacon-operator::before {
+  content: '\e071';
+}
+
+.gigacon-speech-bubble-text::before {
+  content: '\e072';
+}
+
+.gigacon-hamburger::before {
+  content: '\e073';
+}
+
+.gigacon-like::before {
+  content: '\e074';
+}
+
+.gigacon-like-circle::before {
+  content: '\e075';
+}
+
+.gigacon-like-star-circle::before {
+  content: '\e076';
+}
+
+.gigacon-card::before {
+  content: '\e077';
+}
+
+.gigacon-house::before {
+  content: '\e078';
+}
+
+.gigacon-bell::before {
+  content: '\e079';
+}
+
+.gigacon-no-access::before {
+  content: '\e080';
+}
+
+.gigacon-badge-silver::before {
+  content: '\e081';
+}
+
+.gigacon-badge-gold::before {
+  content: '\e082';
+}
+
+.gigacon-badge-platinum::before {
+  content: '\e083';
+}
+
+.gigacon-badge-trial::before,
+.gigacon-badge-standard::before {
+  content: '\e084';
+}
+
+.gigacon-badge-postage-paid::before {
+  content: '\e085';
+}
+
+.gigacon-badge-postage-paid-active::before {
+  content: '\e086';
+}
+
+.gigacon-badge-postage-paid-active::before {
+  content: '\e086';
+}
+
+.gigacon-blog::before {
+  content: '\e087';
+}
+
+.gigacon-conversation::before {
+  content: '\e088';
+}
+
+.gigacon-link-::before {
+  content: '\e089';
+}
+
+.gigacon-url::before {
+  content: '\e090';
+}
+
+.gigacon-phone::before {
+  content: '\e091';
+}
+
+.gigacon-youtube::before {
+  content: '\e094';
+}
+
+.gigacon-loudspeaker::before {
+  content: '\e095';
+}
+
+.gigacon-badge-win::before {
+  content: '\e096';
+}
+
+.gigacon-zoe::before {
+  content: '\e097';
+}
+
+.gigacon-coins::before {
+  content: '\e098';
+}
+
+.gigacon-free-message::before {
+  content: '\e099';
+}
+
+.gigacon-indicator-off::before {
+  content: '\e100';
+}
+
+.gigacon-indicator-on::before {
+  content: '\e101';
+}
+
+.gigacon-rated-g::before {
+  content: '\e102';
+}
+
+.gigacon-rated-m::before {
+  content: '\e103';
+}
+
+.gigacon-skip-first::before {
+  content: '\e104';
+}
+
+.gigacon-skip-previous::before {
+  content: '\e105';
+}
+
+.gigacon-skip-next::before {
+  content: '\e106';
+}
+
+.gigacon-skip-last::before {
+  content: '\e107';
+}
+
+.gigacon-calandar::before {
+  content: '\e108';
+}
+
+.gigacon-bin::before {
+  content: '\e109';
+}
+
+.gigacon-msg-response::before {
+  content: '\e110';
+}
+
+.gigacon-private-gallery::before {
+  content: '\e111';
+}
+
+.gigacon-save::before {
+  content: '\e112';
+}
+
+.gigacon-upload::before {
+  content: '\e113';
+}
+
+.gigacon-pinterest::before {
+  content: '\e114';
+}
+
+.gigacon-star-outline::before {
+  content: '\e115';
+}
+
+.gigacon-star-double::before {
+  content: '\e116';
+}
+
+.gigacon-filter::before {
+  content: '\e123';
+}
+
+.gigacon-microphone::before {
+  content: '\e124';
+}
+
+.gigacon-telephone-active::before {
+  content: '\e125';
+}
+
+.gigacon-telephone-cradled::before {
+  content: '\e126';
+}
+
+.gigacon-pen::before {
+  content: '\e127';
+}
+
+.gigacon-eye-public::before {
+  content: '\e128';
+}
+
+.gigacon-arrow-wedge-right::before {
+  content: '\e129';
+}
+
+.gigacon-play::before {
+  content: '\e130';
+}
+
+.gigacon-volume-loud::before {
+  content: '\e131';
+}
+
+.gigacon-reticule::before {
+  content: '\e132';
+}
+
+.gigacon-eye-private::before {
+  content: '\e133';
+}
+
+.gigacon-chevron-up::before {
+  content: '\e134';
+}
+
+.gigacon-chevron-down::before {
+  content: '\e135';
+}
+
+.gigacon-information::before {
+  content: '\e136';
+}
+
+.gigacon-filter-dark::before {
+  content: '\e137';
+}
+
+.gigacon-pause::before {
+  content: '\e138';
+}
+
+.gigacon-star-flag::before {
+  content: '\e139';
+}
+
+.gigacon-circle-question-mark::before {
+  content: '\e032';
+}
+
+.gigacon-circle-question-mark-inverted::before {
+  content: '\e141';
+}
+
+.gigacon-erotica::before {
+  content: '\e143';
+}
+
+.gigacon-volume-mute::before {
+  content: '\e145';
+}
+
+.gigacon-envelope-tick::before {
+  content: '\e146';
+}
+
+.gigacon-wink-tick::before {
+  content: '\e147';
+}
+
+.gigacon-heart-double::before {
+  content: '\e150';
+}
+
+.gigacon-manage-photo-video::before {
+  content: '\e152';
+}
+
+.gigacon-notifications-viewed-profile::before {
+  content: '\e155';
+}
+
+.gigacon-notifications-support-message::before {
+  content: '\e156';
+}
+
+.gigacon-notifications-link-profile::before {
+  content: '\e157';
+}
+
+.gigacon-notifications-like-login::before {
+  content: '\e158';
+}
+
+.gigacon-notifications-chat-request::before {
+  content: '\e159';
+}
+
+.gigacon-notifications-likes-you::before {
+  content: '\e160';
+}
+
+.gigacon-label::before {
+  content: '\e161';
+}
+
+.gigacon-messenger::before {
+  content: '\e162';
+}
+
+.gigacon-favorite::before {
+  content: '\e163';
+}
+
+.gigacon-chatroom::before {
+  content: '\e164';
+}
+
+.gigacon-noticeboard::before {
+  content: '\e165';
+}
+
+.gigacon-feature::before {
+  content: '\e166';
+}
+
+.gigacon-testimonial::before {
+  content: '\e167';
+}
+
+.gigacon-dismiss::before {
+  content: '\e168';
+}
+
+.gigacon-wink-mutual::before {
+  content: '\e169';
+}
+
+.gigacon-archive::before {
+  content: '\e170';
+}
