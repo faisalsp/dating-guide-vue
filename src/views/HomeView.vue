@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useTemplateRef, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { Modal } from 'bootstrap';
 
-const jsModalRef = useTemplateRef('jsModal');
+const jsModalRef = ref<Element | null>(null);
 let jsModal: Modal;
 
 onMounted(() => {
-  jsModal = new Modal(jsModalRef.value as Element);
+  jsModal = new Modal(jsModalRef.value!);
 });
 
 onUnmounted(() => {
@@ -34,43 +34,47 @@ function toggleModal() {
       Open modal
     </button>
 
-    <div class="modal" id="myModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Modal Via Attributes</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
+    <Teleport to="body">
+      <div class="modal" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Via Attributes</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-          <div class="modal-body">Hello Modal</div>
+            <div class="modal-body">Hello Modal</div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </section>
   <section>
     <h3>Test Bootstrap 5 Modal via JavaScript</h3>
     <button class="btn btn-success" @click="toggleModal">Toggle Modal</button>
 
-    <div ref="jsModal" class="modal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Modal Via JavaScript</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
+    <Teleport to="body">
+      <div ref="jsModalRef" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Via JavaScript</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-          <div class="modal-body">Hello Modal</div>
+            <div class="modal-body">Hello Modal</div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </section>
 </template>
 
