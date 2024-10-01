@@ -1,46 +1,50 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import { defineComponent } from 'vue'
 
-const options = ref([])
-const showOptions = ref(false)
+defineComponent({ name: 'AjaxInput' });
 
-const props = defineProps({
-    id: String,
-    type: String,
-    title: String,
-    ajaxurl: String,
-    placeholder: String,
-    param: String,
-    data: String,
-    required: Boolean
-})
+interface Props {
+    id: string;
+    type: string;
+    title: string;
+    ajaxurl: string;
+    placeholder: string;
+    param: string;
+    data: string;
+    required: boolean;
+}
 
-const searchQuery = defineModel()
+const options = ref<any[] | null>([]);
+const showOptions = ref(false);
 
-const fetchOptions = (evt) => {
-    const { ajaxurl, param } = props
-    let val = evt.target.value
+const props = defineProps<Props>();
+
+const searchQuery = defineModel();
+
+const fetchOptions = (evt: Event) => {
+    const { ajaxurl, param } = props;
+    let val = (evt.target as HTMLInputElement).value;
 
     if (val !== '') {
-        showOptions.value = true
-        const url = `${ajaxurl}${val}`
+        showOptions.value = true;
+        const url = `${ajaxurl}${val}`;
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                options.value = data[param]
+            .then((response: Response) => response.json())
+            .then((data: any) => {
+                options.value = data[param];
             })
-            .catch(error => console.error(error))
+            .catch((error: any) => console.error(error));
     } else {
-        options.value = null
-        showOptions.value = false
+        options.value = null;
+        showOptions.value = false;
     }
 }
-
-const handleBlur = (evt) => {
-    showOptions.value = evt.target?.value !== '' ? true : false
+const handleBlur = (evt: Event) => {
+    showOptions.value = (evt.target as HTMLInputElement)?.value !== '' ? true : false
 }
 
-function handleSelect(option) {
+const handleSelect = (option: Record<string, any>) => {
     const { data } = props
     searchQuery.value = option[data]
     showOptions.value = false
@@ -53,8 +57,8 @@ function handleSelect(option) {
             :placeholder="placeholder" class="form-control" :required="required" />
         <ul v-if="showOptions"
             class="options position-absolute bg-white shadow-md w-100 mt-1 border list-unstyled py-2">
-            <li v-for="(option, index) in options" :key="index"
-                class="cursor-pointer py-2 px-4 small hover:bg-gray-100" @click="handleSelect(option)">
+            <li v-for="(option, index) in options" :key="index" class="cursor-pointer py-2 px-3 small hover-grey"
+                @click="handleSelect(option)">
                 {{ option[data] }}
             </li>
         </ul>

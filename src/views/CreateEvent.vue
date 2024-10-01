@@ -1,9 +1,12 @@
-<script setup>
-    import Forms from '@/components/Forms.vue'
+<script setup lang="ts">
+import SubmitForm from '@/components/SubmitForm.vue'
+import { defineComponent } from 'vue';
+
+defineComponent({ name: 'CreateEvent' });
 </script>
 
 <template>
     <div>
-        <Forms />
+        <SubmitForm />
     </div>
 </template>

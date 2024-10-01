@@ -21,6 +21,14 @@
   background-color: rgb(254 243 199);
 }
 
+.hover-grey:hover {
+  background-color: rgb(243 244 246);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 @media (max-width: 992px) {
   .sidebar {
     position: relative;
