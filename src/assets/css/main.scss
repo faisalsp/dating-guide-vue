@@ -1,0 +1,28 @@
+@import './gigacon.css';
+
+@media (min-width: 768px) {
+  .sidebar .offcanvas-lg {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 48px;
+  }
+}
+
+.sidebar {
+  position: fixed;
+}
+
+.sidebar .nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.bg-amber {
+  background-color: rgb(254 243 199);
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    position: relative;
+  }
+}
