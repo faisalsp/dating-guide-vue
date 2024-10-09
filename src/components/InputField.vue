@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import emojiRegex from 'emoji-regex'
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 
 defineComponent({ name: 'InputField' })
 
@@ -31,6 +31,10 @@ const props = defineProps({
     data: null,
     selected: null,
     className: String,
+    limitLines: {
+        type: String,
+        default: "0"
+    },
     value: String,
     name: String,
     usekey: Boolean,
@@ -40,6 +44,8 @@ const props = defineProps({
     },
     accept: String
 })
+
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
 const removeEmojis = (value: string): string => {
     if (typeof value !== 'string') {
@@ -67,6 +73,19 @@ const onFileChange = (event: Event) => {
     }
 }
 
+onMounted(() => {
+    const textarea = textareaRef.value
+    const limitLines = Number(props.limitLines)
+    if (textarea && limitLines > 0) {
+        textarea.addEventListener('input', () => {
+            const lines = textarea.value.split('\n')
+            if (lines.length > limitLines) {
+                textarea.value = lines.slice(0, limitLines).join('\n')
+            }
+        })
+    }
+})
+
 const resetFileInput = () => {
     imagePreview.value = null
     if (fileInput.value) {
@@ -76,7 +95,7 @@ const resetFileInput = () => {
 
 watch(textModel, (newValue: any) => {
     const { limit, type } = props
-    if (type !== 'select') {
+    if (type !== 'select' && type !== 'checkbox' && type !== 'file' && type !== 'radio') {
         textModel.value = limit ? removeEmojis(newValue).substring(0, Number(limit)) : removeEmojis(newValue)
     }
 }, { deep: true });
@@ -84,14 +103,21 @@ watch(textModel, (newValue: any) => {
 </script>
 <template>
     <div v-if="type === 'text' || type === 'email'" :class="nowrapper ? className : className + ' mb-3'">
-        <label :for="id" class="form-label small fw-medium">{{ title }}</label>
+        <label :for="id" v-if="title" class="form-label small fw-medium">{{ title }}</label>
         <input :type="type" v-model="textModel" :id="id" class="form-control" :placeholder="placeholder"
             :required="!!required" />
+        <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
+    </div>
+    <div v-if="type === 'password'" :class="nowrapper ? className : className + ' mb-3'">
+        <label :for="id" v-if="title" class="form-label small fw-medium">{{ title }}</label>
+        <input :type="type" v-model="textModel" :id="id" class="form-control" :placeholder="placeholder"
+            :required="!!required" />
+        <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
     </div>
     <div v-if="type === 'textarea'" :class="nowrapper ? className : 'mb-3'">
         <label :for="id" class="form-label small fw-medium">{{ title }}</label>
-        <textarea :rows="rows" :id="id" v-model="textModel" :required="!!required" :placeholder="placeholder"
-            class="form-control"></textarea>
+        <textarea :rows="rows" :id="id" v-model="textModel" ref="textareaRef" :required="!!required"
+            :placeholder="placeholder" class="form-control"></textarea>
         <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
     </div>
     <div v-if="type === 'select'" :class="nowrapper ? 'w-100' : 'mb-3'">

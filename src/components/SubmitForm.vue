@@ -36,7 +36,7 @@ interface Options {
 }
 
 const route = useRoute();
-
+const idParam = Number(route.params.id)
 const emailParam = route.query.email;
 
 const events = ref<string[]>([
@@ -121,7 +121,7 @@ const getDay = computed(() => {
       <div class="col-12 col-lg-8">
         <form action="" method="post" class="">
           <div class="mb-3">
-            <h1 class="mb-0 fw-bold h2">Submit an Event</h1>
+            <h1 class="mb-0 fw-bold h2">{{ idParam ? 'Edit Event 1' : 'Submit an Event' }} </h1>
             <small>Please enter your event details below:</small>
           </div>
           <div class="mb-3">
@@ -138,14 +138,14 @@ const getDay = computed(() => {
           <h2 class="h4 fw-bold mb-3" v-if="event.eventPick == '1'">
             Event Listing & Full Event Details
           </h2>
-          <h2 class="text-xl fw-bold mb-3" v-if="event.eventPick == '2'">
+          <h2 class="h4 fw-bold mb-3" v-if="event.eventPick == '2'">
             Event Listing that Links to My Website
           </h2>
           <InputField id="eventName" title="Event Name*" type="text" className="w-full" v-model="event.eventName"
             placeholder="Event name" required />
 
-          <InputField id="eventdesc" title="Short Description of Event*" type="textarea" v-model="event.eventDesc"
-            helper="Maximum 3 lines, no emoji" required limit="200" />
+          <InputField id="eventdesc" title="Short Description of Event*" type="textarea" limitLines="3"
+            v-model="event.eventDesc" helper="Maximum 3 lines, no emoji" required limit="200" />
 
           <div class="mb-3">
             <div class="mb-2">

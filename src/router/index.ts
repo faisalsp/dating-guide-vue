@@ -1,26 +1,76 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import CreateEvent from '../views/CreateEvent.vue';
-import AddEvent from '@/views/admin/AddEvent.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: '/admin',
+      component: () => import('@/layouts/AdminLayout.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/HomeView.vue')
+        },
+        {
+          path: 'events',
+          component: () => import('@/views/admin/events/Events.vue')
+        },
+        {
+          path: 'events/edit/:id',
+          component: () => import('@/views/admin/events/CreateEditEvent.vue')
+        },
+        {
+          path: 'create-event',
+          component: () => import('@/views/admin/events/CreateEditEvent.vue')
+        },
+        {
+          path: 'add-event',
+          component: () => import('@/views/admin/events/AddEvent.vue')
+        },
+        {
+          path: 'pending-events',
+          component: () => import('@/views/admin/events/PendingEvents.vue')
+        },
+        {
+          path: 'sponsored',
+          component: () => import('@/views/admin/sponsored/Sponsored.vue')
+        }
+      ]
     },
     {
-      path: '/create-event',
-      name: 'create-event',
-      component: CreateEvent,
+      path: '/user',
+      component: () => import('@/layouts/UserLayout.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/HomeView.vue')
+        },
+        {
+          path: 'events',
+          component: () => import('@/views/user/events/Events.vue')
+        },
+        {
+          path: 'create-event',
+          component: () => import('@/views/user/events/CreateEditEvent.vue')
+        },
+        {
+          path: 'events/edit/:id',
+          component: () => import('@/views/user/events/CreateEditEvent.vue')
+        }
+      ]
     },
     {
-      path: '/admin/add-event',
-      name: 'admin-add-event',
-      component: AddEvent,
+      path: '/login',
+      component: () => import('@/views/Login.vue')
     },
+    {
+      path: '/signup',
+      component: () => import('@/views/Signup.vue')
+    },
+    {
+      path: '/forgot-password',
+      component: () => import('@/views/ForgotPassword.vue')
+    }
   ]
 });
 

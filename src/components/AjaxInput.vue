@@ -17,9 +17,7 @@ interface Props {
 
 const options = ref<any[] | null>([]);
 const showOptions = ref(false);
-
 const props = defineProps<Props>();
-
 const searchQuery = defineModel();
 
 const fetchOptions = (evt: Event) => {
