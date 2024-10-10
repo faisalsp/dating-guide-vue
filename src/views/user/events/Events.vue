@@ -57,28 +57,32 @@ const resolveRouteFromClick = (e: any) => {
 <template>
   <div class="max-w-xl mx-auto">
     <h1 class="h2 font-bold mb-3">My Event Entries</h1>
-    <div class="my-10 gap-10">
-      <div class="d-flex gap-2 flex-wrap align-items-center">
-        <RouterLink to="/user/create-event" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Submit a new event</RouterLink>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-danger">Delete</button>
-          <button class="btn btn-dark">Pause</button>
-          <button class="btn btn-success">Resume</button>
-          <button class="btn btn-primary">View</button>
-        </div>
+    <div class="d-flex gap-2 flex-wrap align-items-center">
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Actions
+        </button>
+        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">Pause</a></li>
+          <li><a class="dropdown-item" href="#">Resume</a></li>
+          <li><a class="dropdown-item" href="#">View</a></li>
+        </ul>
       </div>
-      <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
-        class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Event Title</th>
-            <th>Email</th>
-            <th>Event Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-      </DataTable>
+      <RouterLink to="/user/create-event" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Submit
+        a new event</RouterLink>
     </div>
+    <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
+      class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Event Title</th>
+          <th>Email</th>
+          <th>Event Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </DataTable>
   </div>
 
 </template>

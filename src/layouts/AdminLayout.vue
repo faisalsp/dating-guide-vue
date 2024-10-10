@@ -58,7 +58,7 @@ import { RouterLink, RouterView } from 'vue-router'
                       <RouterLink to="/admin/create-event" class="nav-link link-dark">DG Home Page Listings</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Logins</RouterLink>
+                      <RouterLink to="/admin/admin-logins" class="nav-link link-dark">Logins</RouterLink>
                     </li>
                   </ul>
                 </div>
@@ -75,13 +75,13 @@ import { RouterLink, RouterView } from 'vue-router'
                 <div class="collapse" id="travel-collapse">
                   <ul class="btn-toggle-nav nav-link list-unstyled fw-normal py-1 small">
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Travel Events</RouterLink>
+                      <RouterLink to="/admin/travel/travel-events" class="nav-link link-dark">Travel Events</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Travel SponsoredAds</RouterLink>
+                      <RouterLink to="/admin/travel/travel-sponsored" class="nav-link link-dark">Travel SponsoredAds</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Travel Events Pending (0)</RouterLink>
+                      <RouterLink to="/admin/travel/travel-events-pending" class="nav-link link-dark">Travel Events Pending (0)</RouterLink>
                     </li>
                   </ul>
                 </div>
@@ -98,10 +98,10 @@ import { RouterLink, RouterView } from 'vue-router'
                 <div class="collapse" id="clubs-collapse">
                   <ul class="btn-toggle-nav nav-link list-unstyled fw-normal py-1 small">
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Clubs</RouterLink>
+                      <RouterLink to="/admin/clubs" class="nav-link link-dark">Clubs</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Clubs Pending (0)</RouterLink>
+                      <RouterLink to="/admin/pending-clubs" class="nav-link link-dark">Pending Clubs (0)</RouterLink>
                     </li>
                   </ul>
                 </div>

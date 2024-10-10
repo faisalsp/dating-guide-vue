@@ -2,12 +2,12 @@
 import InputField from '@/components/InputField.vue';
 import { defineComponent } from 'vue';
 
-defineComponent({ name: 'PendingEvents' })
+defineComponent({ name: 'PendingClubs' })
 
 </script>
 <template>
   <div class="max-w-xl mx-auto">
-    <h1 class="h2 font-bold mb-3">Pending Events</h1>
+    <h1 class="h2 font-bold mb-3">Pending Clubs</h1>
     <div class="row g-3">
       <div v-for="index in 3" :key="index" class="col-md-6">
         <div class="card">
@@ -36,8 +36,8 @@ defineComponent({ name: 'PendingEvents' })
                   class="fw-medium text-black">John Doe</span></small>
               <div class="d-flex gap-2 flex-wrap mt-3 align-items-center justify-content-between">
                 <div class="d-flex gap-2 flex-wrap">
-                  <button type="submit" class="btn btn-danger text-center">Reject Event</button>
-                  <button type="submit" class="btn btn-primary text-center">Accept Event</button>
+                  <button type="submit" class="btn btn-danger text-center">Reject Club</button>
+                  <button type="submit" class="btn btn-primary text-center">Accept Club</button>
                 </div>
                 <div class="dropdown">
                   <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"

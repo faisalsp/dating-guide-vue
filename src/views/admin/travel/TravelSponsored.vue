@@ -3,10 +3,13 @@ import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-bs5';
+import InputField from '@/components/InputField.vue';
 
 DataTable.use(DataTablesCore);
 
-defineComponent({ name: 'EventList' })
+defineComponent({ name: 'TravelSponsored' })
+
+const sites = ['All Dating Sites', "AdultMatchMaker.com.au", "GayMatchMaker.com.au", "LesbianMatchMaker.com.au"]
 
 const columns = [
   {
@@ -14,8 +17,12 @@ const columns = [
       return `<input type="checkbox" class="me-3" value="${data}">${data}`
     }
   },
-  { data: 'name' },
-  { data: 'email' },
+  {
+    data: 'status',
+    render: (data: string) => {
+      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`
+    }
+  },
   {
     data: 'start_date',
     render: (data: string) => {
@@ -24,10 +31,13 @@ const columns = [
       return date.toLocaleDateString('en-AU', options);
     }
   },
+  { data: 'name' },
   {
-    data: 'status',
+    data: 'id',
+    "orderable": false,
     render: (data: string, type: any, row: { id: number }) => {
-      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`
+      return `<a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>
+      <a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-star me-1"></i>Select</a>`
     }
   },
 ]
@@ -56,8 +66,9 @@ const resolveRouteFromClick = (e: any) => {
 </script>
 <template>
   <div class="max-w-xl mx-auto">
-    <h1 class="h2 font-bold mb-3">Event List</h1>
-    <div class="d-flex gap-2 flex-wrap align-items-center">
+    <h1 class="h2 font-bold mb-3">Travel Sponsored Ads</h1>
+    <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
+      <InputField id="states" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
       <div class="dropdown">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -67,23 +78,18 @@ const resolveRouteFromClick = (e: any) => {
           <li><a class="dropdown-item" href="#">Delete</a></li>
           <li><a class="dropdown-item" href="#">Pause</a></li>
           <li><a class="dropdown-item" href="#">Resume</a></li>
-          <li><a class="dropdown-item" href="#">Reject</a></li>
-          <li><a class="dropdown-item" href="#">View</a></li>
         </ul>
       </div>
-      <RouterLink to="/admin/create-event" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Submit
-        a new event</RouterLink>
-
     </div>
     <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
       class="table table-hover table-striped" width="100%">
       <thead>
         <tr>
-          <th>Event ID</th>
-          <th>Event Title</th>
-          <th>Email</th>
-          <th>Event Date</th>
+          <th width="10%">Event ID</th>
           <th>Status</th>
+          <th>Event Date</th>
+          <th>Event Name</th>
+          <th width="20%"></th>
         </tr>
       </thead>
     </DataTable>

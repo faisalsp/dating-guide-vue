@@ -2,6 +2,7 @@
 import { useRoute } from 'vue-router'
 import { defineComponent, ref, computed } from 'vue'
 import InputField from './InputField.vue'
+import AjaxInput from './AjaxInput.vue';
 
 defineComponent({ name: 'SubmitForm' })
 interface Event {
@@ -35,9 +36,11 @@ interface Options {
   ages: number[];
 }
 
-const route = useRoute();
+const route = useRoute()
+const is_admin = route.matched[0].path === '/admin' ? true : false
+const searchQuery = defineModel()
 const idParam = Number(route.params.id)
-const emailParam = route.query.email;
+const emailParam = route.query.email
 
 const events = ref<string[]>([
   "Speed Dating",
@@ -51,7 +54,7 @@ const events = ref<string[]>([
   "Pubs, Nightclubs",
   "Adult Events Women",
   "Gay & Lesbian Events",
-]);
+])
 
 const listMonths = ref<string[]>(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
 const currentDate = new Date();
@@ -146,7 +149,10 @@ const getDay = computed(() => {
 
           <InputField id="eventdesc" title="Short Description of Event*" type="textarea" limitLines="3"
             v-model="event.eventDesc" helper="Maximum 3 lines, no emoji" required limit="200" />
-
+          <div class="mb-3">
+            <AjaxInput id="clubs" method="POST" v-if="is_admin" type="text" title="Club" v-model="searchQuery"
+              param="clubName" ajaxurl="/clubs.json" />
+          </div>
           <div class="mb-3">
             <div class="mb-2">
               <h2 class="fw-bold h4">Venue Location*</h2>
@@ -260,6 +266,7 @@ const getDay = computed(() => {
             <InputField id="rules" rows="5" title="Rules" type="textarea" helper="Max 500 characters" limit="500" />
             <InputField id="bookingurl" v-model="event.bookingUrl" title="Booking URL" type="text"
               placeholder="https://" />
+            <InputField id="ammmemberid" v-if="is_admin" title="AMM Member ID" type="text" />
             <InputField v-if="event.bookingUrl === ''" id="bookings" title="Bookings" type="textarea" limit="200"
               helper="Max 200 characters" />
             <InputField id="ctemail" title="Contact Email" type="email" placeholder="john_doe@mail.com" />

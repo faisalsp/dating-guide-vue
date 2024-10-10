@@ -14,25 +14,22 @@ const createEvent = async () => {
 </script>
 <template>
   <div class="max-w-xl mx-auto">
-    <div class="my-10 gap-10">
+    <form action="" method="post" @submit.prevent="createEvent">
+      <div class="mb-3">
+        <h1 class="h2 font-bold">Add New Event for Member</h1>
+      </div>
 
-      <form action="" method="post" @submit.prevent="createEvent">
-        <div class="mb-3">
-          <h1 class="h2 font-bold">Add New Event for Member</h1>
-        </div>
-
-        <div class="mb-5">
-          <label for="email" class="form-label fw-medium">Enter part of email*</label>
-          <div class="d-flex gap-2">
-            <div class="relative w-50">
-              <AjaxInput id="email" type="email" title="" placeholder="john@mail.com" v-model="searchQuery" data="email"
-                param="users" ajaxurl="https://dummyjson.com/users/search?limit=10&q=" required />
-            </div>
-            <button type="submit" class="btn btn-primary text-center">Add Event For Member</button>
+      <div class="mb-5">
+        <label for="email" class="form-label fw-medium">Enter part of email*</label>
+        <div class="d-flex gap-2 flex-wrap">
+          <div class="relative w-100 w-lg-50">
+            <AjaxInput id="email" type="email" title="" placeholder="john@mail.com" v-model="searchQuery" data="email"
+              param="users" ajaxurl="https://dummyjson.com/users/search?limit=10&q=" required />
           </div>
+          <button type="submit" class="btn btn-primary text-center">Add Event For Member</button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 
 </template>

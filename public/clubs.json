@@ -1,0 +1,104 @@
+{
+  "data": [
+    {
+      "clubId": 1,
+      "clubName": "Electric Storm FC",
+      "status": "Active"
+    },
+    {
+      "clubId": 2,
+      "clubName": "Thunderbolt United",
+      "status": "Active"
+    },
+    {
+      "clubId": 3,
+      "clubName": "Starlight Strikers",
+      "status": "Active"
+    },
+    {
+      "clubId": 4,
+      "clubName": "Midnight Mavericks",
+      "status": "Active"
+    },
+    {
+      "clubId": 5,
+      "clubName": "Rise Up Rangers",
+      "status": "Active"
+    },
+    {
+      "clubId": 6,
+      "clubName": "Velocity FC",
+      "status": "Active"
+    },
+    {
+      "clubId": 7,
+      "clubName": "Fusion United",
+      "status": "Active"
+    },
+    {
+      "clubId": 8,
+      "clubName": "Apex Predators",
+      "status": "Active"
+    },
+    {
+      "clubId": 9,
+      "clubName": "Storm Chasers",
+      "status": "Active"
+    },
+    {
+      "clubId": 10,
+      "clubName": "Tornado Titans",
+      "status": "Active"
+    },
+    {
+      "clubId": 11,
+      "clubName": "Comet Crushers",
+      "status": "Active"
+    },
+    {
+      "clubId": 12,
+      "clubName": "Aurora FC",
+      "status": "Active"
+    },
+    {
+      "clubId": 13,
+      "clubName": "Bolt Brigade",
+      "status": "Active"
+    },
+    {
+      "clubId": 14,
+      "clubName": "Pulse Pioneers",
+      "status": "Active"
+    },
+    {
+      "clubId": 15,
+      "clubName": "Flare Fusion",
+      "status": "Active"
+    },
+    {
+      "clubId": 16,
+      "clubName": "Spark Squad",
+      "status": "Active"
+    },
+    {
+      "clubId": 17,
+      "clubName": "Thunderbolts",
+      "status": "Active"
+    },
+    {
+      "clubId": 18,
+      "clubName": "Lightning Legion",
+      "status": "Active"
+    },
+    {
+      "clubId": 19,
+      "clubName": "Nova Nomads",
+      "status": "Active"
+    },
+    {
+      "clubId": 20,
+      "clubName": "Zephyr FC",
+      "status": "Active"
+    }
+  ]
+}

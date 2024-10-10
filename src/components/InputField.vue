@@ -120,7 +120,7 @@ watch(textModel, (newValue: any) => {
             :placeholder="placeholder" class="form-control"></textarea>
         <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
     </div>
-    <div v-if="type === 'select'" :class="nowrapper ? 'w-100' : 'mb-3'">
+    <div v-if="type === 'select'" :class="nowrapper ? 'w-100' : (className ?? ' mb-3')">
         <label v-if="title" :for="id" class="block mb-2 small fw-medium text-gray-900">{{ title
             }}</label>
         <select v-if="forceselect" :id="id" :required="!!required" class="form-select">

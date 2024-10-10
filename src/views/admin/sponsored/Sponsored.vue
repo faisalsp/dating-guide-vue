@@ -43,31 +43,39 @@ const resolveRouteFromClick = (e: any) => {
   e.preventDefault()
   const itemId = e.target.dataset.itemId
   if (!itemId) return
-  router.push('events/edit/' + itemId);
+  router.push('/admin/events/edit/' + itemId);
 }
 
 </script>
 <template>
   <div class="max-w-xl mx-auto">
     <h1 class="h2 font-bold mb-3">Sponsored Ads</h1>
-    <div class="my-10 gap-10">
-      <div class="d-flex gap-1 flex-wrap mb-3 w-25 mx-auto">
-        <InputField id="states" title="Sponsoring Site" :data="sites" type="select" nowrapper
-          forceselect />
+    <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
+      <InputField id="states" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Actions
+        </button>
+        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">Delete</a></li>
+          <li><a class="dropdown-item" href="#">Pause</a></li>
+          <li><a class="dropdown-item" href="#">Resume</a></li>
+        </ul>
       </div>
-      <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
-        class="table table-hover table-striped" width="100%">
-        <thead>
-          <tr>
-            <th width="10%">Event ID</th>
-            <th>Status</th>
-            <th>Event Date</th>
-            <th>Event Name</th>
-            <th width="15%"></th>
-          </tr>
-        </thead>
-      </DataTable>
     </div>
+    <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
+      class="table table-hover table-striped" width="100%">
+      <thead>
+        <tr>
+          <th width="10%">Event ID</th>
+          <th>Status</th>
+          <th>Event Date</th>
+          <th>Event Name</th>
+          <th width="15%"></th>
+        </tr>
+      </thead>
+    </DataTable>
   </div>
 
 </template>

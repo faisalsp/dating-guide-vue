@@ -6,7 +6,7 @@ import DataTablesCore from 'datatables.net-bs5';
 
 DataTable.use(DataTablesCore);
 
-defineComponent({ name: 'EventList' })
+defineComponent({ name: 'TravelEvents' })
 
 const columns = [
   {
@@ -14,8 +14,6 @@ const columns = [
       return `<input type="checkbox" class="me-3" value="${data}">${data}`
     }
   },
-  { data: 'name' },
-  { data: 'email' },
   {
     data: 'start_date',
     render: (data: string) => {
@@ -24,6 +22,8 @@ const columns = [
       return date.toLocaleDateString('en-AU', options);
     }
   },
+  { data: 'name' },
+  { data: 'email' },
   {
     data: 'status',
     render: (data: string, type: any, row: { id: number }) => {
@@ -56,7 +56,7 @@ const resolveRouteFromClick = (e: any) => {
 </script>
 <template>
   <div class="max-w-xl mx-auto">
-    <h1 class="h2 font-bold mb-3">Event List</h1>
+    <h1 class="h2 font-bold mb-3">Find Travel Events</h1>
     <div class="d-flex gap-2 flex-wrap align-items-center">
       <div class="dropdown">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -80,9 +80,9 @@ const resolveRouteFromClick = (e: any) => {
       <thead>
         <tr>
           <th>Event ID</th>
-          <th>Event Title</th>
-          <th>Email</th>
           <th>Event Date</th>
+          <th>Event Title</th>
+          <th>Owner</th>
           <th>Status</th>
         </tr>
       </thead>

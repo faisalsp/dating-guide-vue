@@ -34,7 +34,27 @@ const router = createRouter({
         {
           path: 'sponsored',
           component: () => import('@/views/admin/sponsored/Sponsored.vue')
-        }
+        },
+        {
+          path: 'travel/travel-events',
+          component: () => import('@/views/admin/travel/TravelEvents.vue')
+        },
+        {
+          path: 'travel/travel-sponsored',
+          component: () => import('@/views/admin/travel/TravelSponsored.vue')
+        },
+        {
+          path: 'clubs',
+          component: () => import('@/views/admin/clubs/Clubs.vue')
+        },
+        {
+          path: 'pending-clubs',
+          component: () => import('@/views/admin/clubs/PendingClubs.vue')
+        },
+        {
+          path: 'admin-logins',
+          component: () => import('@/views/admin/login/AdminLogin.vue')
+        },
       ]
     },
     {
