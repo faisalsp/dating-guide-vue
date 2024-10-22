@@ -17,8 +17,8 @@ const columns = [
   { data: 'clubName' },
   {
     data: 'status',
-    render: (data: string, type: any, row: { id: number }) => {
-      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`
+    render: (data: string, type: any, row: { clubId: number }) => {
+      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.clubId}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`
     }
   },
 ]
@@ -29,7 +29,7 @@ const resolveRouteFromClick = (e: any) => {
     e.preventDefault()
     const itemId = e.target.dataset.itemId
     if (!itemId) return
-    router.push('/admin/events/edit/' + itemId);
+    router.push('/admin/clubs/edit/' + itemId);
   } else {
     const checkedValues: string[] = [];
     const checkboxes = document.querySelector('.dataTable')?.querySelectorAll('input[type="checkbox"]:checked');
@@ -39,7 +39,7 @@ const resolveRouteFromClick = (e: any) => {
           checkedValues.push(checkbox.value);
         }
       })
-      console.log(checkedValues);
+      // console.log(checkedValues);
     }
   }
 }
@@ -61,7 +61,7 @@ const resolveRouteFromClick = (e: any) => {
           <li><a class="dropdown-item" href="#">Delete</a></li>
         </ul>
       </div>
-      <RouterLink to="/admin/create-event" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Add
+      <RouterLink to="/admin/add-club" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Add
         club</RouterLink>
     </div>
     <DataTable :columns="columns" ajax="/clubs.json" @click="resolveRouteFromClick($event)"

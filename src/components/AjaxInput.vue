@@ -19,18 +19,25 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    state: String,
     required: {
         type: Boolean,
         default: false
     }
 })
 
-const options = ref<any[] | null>([]);
-const showOptions = ref(false);
-const searchQuery = defineModel();
+interface Suburb {
+    state_name: string;
+    suburb: string;
+}
+
+const options = ref<any[] | null>([])
+const showOptions = ref(false)
+const searchQuery = defineModel()
+const suburbs = ref<Suburb[]>([]);
 
 const fetchOptions = (evt: Event) => {
-    const { ajaxurl, param, method } = props
+    const { ajaxurl, param, method, state } = props
     let val = (evt.target as HTMLInputElement).value
 
     if (val !== '') {
@@ -39,12 +46,25 @@ const fetchOptions = (evt: Event) => {
         fetch(url)
             .then((response: Response) => response.json())
             .then((data: any) => {
-                const key = param !== undefined ? param : 'email'
-                if (method === 'POST') {
-                    const mappedClubs = data.data.map((res: any) => res[key])
-                    options.value = mappedClubs.filter((item: string) => item.toLowerCase().includes(val.toLowerCase()))
+                if (state) {
+                    suburbs.value = data.data
+                    const result = [];
+                    for (const s of suburbs.value) {
+                        if (result.length > 7) break
+                        if (s.state_name === state && s.suburb.toLowerCase().includes(val.toLowerCase())) {
+                            result.push(s.suburb)
+                        }
+                    }
+                    options.value = result
+
                 } else {
-                    options.value = data[key]
+                    const key = param !== undefined ? param : 'email'
+                    if (method === 'POST') {
+                        const mappedClubs = data.data.map((res: any) => res[key])
+                        options.value = mappedClubs.filter((item: string) => item.toLowerCase().includes(val.toLowerCase()))
+                    } else {
+                        options.value = data[key]
+                    }
                 }
             })
             .catch((error: any) => console.error(error));
@@ -69,7 +89,7 @@ const handleSelect = (option: Record<string, any>) => {
         <input :type="type" :id="id" v-model.trim="searchQuery" @input="fetchOptions" @blur="handleBlur"
             :placeholder="placeholder" class="form-control" :required="required" />
         <ul v-if="showOptions"
-            class="options position-absolute bg-white shadow-md w-100 mt-1 border list-unstyled py-2">
+            class="options position-absolute bg-white shadow-md w-100 mt-1 border list-unstyled py-2 z-3">
             <li v-for="(option, index) in options" :key="index" class="cursor-pointer py-2 px-3 small hover-grey"
                 @click="handleSelect(option)">
                 {{ !data ? option : option[data] }}

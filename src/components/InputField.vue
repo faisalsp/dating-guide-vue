@@ -156,7 +156,7 @@ watch(textModel, (newValue: any) => {
         <button v-if="imagePreview" class="d-block btn btn-danger btn-sm bg-danger mb-2"
             @click="resetFileInput">Remove</button>
         <label class="form-label small fw-medium" :for="id">{{ title }}</label>
-        <input class="form-control" :id="id" type="file" @change="onFileChange" :accept="accept" ref="fileInput">
+        <input class="form-control" :id="id" type="file" @change="onFileChange" :accept="accept" ref="fileInput" :required="!!required">
         <div class="form-text" :id="id + '_help'">{{ helper }}</div>
     </div>
 </template>

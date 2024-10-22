@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
 
-const SubmitForm = defineAsyncComponent(() => import('@/components/SubmitForm.vue'))
+const EventForm = defineAsyncComponent(() => import('@/components/EventForm.vue'))
 
 defineComponent({ name: 'CreateEditEvent' });
 </script>
 
 <template>
-    <SubmitForm />
+    <EventForm />
 </template>

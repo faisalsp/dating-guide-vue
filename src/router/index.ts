@@ -4,6 +4,10 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      redirect: '/login'
+    },
+    {
       path: '/admin',
       component: () => import('@/layouts/AdminLayout.vue'),
       children: [
@@ -48,13 +52,21 @@ const router = createRouter({
           component: () => import('@/views/admin/clubs/Clubs.vue')
         },
         {
+          path: 'clubs/edit/:id',
+          component: () => import('@/views/admin/clubs/CreateEditClub.vue')
+        },
+        {
           path: 'pending-clubs',
           component: () => import('@/views/admin/clubs/PendingClubs.vue')
         },
         {
+          path: 'add-club',
+          component: () => import('@/views/admin/clubs/CreateEditClub.vue')
+        },
+        {
           path: 'admin-logins',
           component: () => import('@/views/admin/login/AdminLogin.vue')
-        },
+        }
       ]
     },
     {
