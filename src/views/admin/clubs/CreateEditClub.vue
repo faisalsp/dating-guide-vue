@@ -12,7 +12,6 @@ interface Options {
 const clubPick = ref('1')
 
 const route = useRoute()
-// const is_admin = route.matched[0].path === '/admin' ? true : false
 const statex = ref("New South Wales")
 const searchQuery = defineModel()
 const idParam = Number(route.params.id)
