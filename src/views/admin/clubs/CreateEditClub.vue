@@ -90,7 +90,6 @@ const options = ref<Options>({
               </div>
             </div>
           </div>
-
           <InputField id="listingDesc" title="Listing Description*" type="textarea" required />
           <InputField id="website" :title="clubPick === '1' ? 'Website*' : 'Website'" type="text" className="w-full"
             :required="clubPick === '1' ? true : false" />
