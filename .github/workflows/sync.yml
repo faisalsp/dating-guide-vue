@@ -2,7 +2,7 @@ name: Sync Fork
 
 on:
   schedule:
-    - cron: '5 * * * *'  # Run every 6 hours
+    - cron: '* * * * *'  # Run every 6 hours
   workflow_dispatch:  # Allows manual trigger
   push:
     branches:
@@ -24,7 +24,7 @@ jobs:
         run: |
           git remote add upstream https://github.com/stevanus-giga/dating-guide-vue.git
           git fetch upstream
-          git checkout upstream/develop  # Ensure you are on the correct branch
+          git checkout -b develop  # Ensure you are on the correct branch
           git merge upstream/develop --no-edit
 
       - name: Push Changes
