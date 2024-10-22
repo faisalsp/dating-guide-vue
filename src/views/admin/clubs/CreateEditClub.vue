@@ -13,10 +13,9 @@ const clubPick = ref('1')
 
 const route = useRoute()
 // const is_admin = route.matched[0].path === '/admin' ? true : false
-const statex = ref("Victoria")
+const statex = ref("New South Wales")
 const searchQuery = defineModel()
 const idParam = Number(route.params.id)
-// const emailParam = route.query.email
 
 const options = ref<Options>({
   states: {
