@@ -24,8 +24,8 @@ jobs:
         run: |
           git remote add upstream https://github.com/stevanus-giga/dating-guide-vue.git
           git fetch upstream
-          git checkout develop  # Ensure you are on the correct branch
-          git merge upstream/main --no-edit
+          git checkout upstream/develop  # Ensure you are on the correct branch
+          git merge upstream/develop --no-edit
 
       - name: Push Changes
         env:
