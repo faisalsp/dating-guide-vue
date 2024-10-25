@@ -2,43 +2,49 @@
   "data": [
     {
       "id": 11,
-      "name": "Event 1",
+      "name": "Banksia Drinks Night",
       "email": "john.doe@example.com",
+      "state": "NSW",
       "start_date": "2022-01-01",
       "status": "Pending"
     },
     {
       "id": 12,
-      "name": "Event 2",
+      "name": "Toowoomba Orgy in the Woods",
       "email": "jane.doe@example.com",
+      "state": "QLD",
       "start_date": "2022-01-15",
       "status": "Active"
     },
     {
       "id": 13,
-      "name": "Event 3",
+      "name": "Social Meet and Greet Drinks Night",
       "email": "bob.smith@example.com",
+      "state": "NSW",
       "start_date": "2022-02-01",
       "status": "Deleted"
     },
     {
       "id": 14,
-      "name": "Event 4",
+      "name": "Speakeasy Petting Party",
       "email": "alice.johnson@example.com",
+      "state": "NSW",
       "start_date": "2022-03-01",
       "status": "Active"
     },
     {
       "id": 15,
-      "name": "Event 5",
+      "name": "Dress Down Swingers Party",
       "email": "mike.williams@example.com",
+      "state": "SA",
       "start_date": "2022-04-01",
       "status": "Expired"
     },
     {
       "id": 16,
-      "name": "Event 6",
+      "name": "Cocktail Drinks Social Night",
       "email": "mike.john123@example.com",
+      "state": "VIC",
       "start_date": "2023-10-20",
       "status": "Paused"
     }

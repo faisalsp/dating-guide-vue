@@ -7,9 +7,9 @@ import InputField from '@/components/InputField.vue';
 
 DataTable.use(DataTablesCore);
 
-defineComponent({ name: 'EventList' })
+defineComponent({ name: 'DGHomeListing' })
 
-const sites = ['All Dating Sites', "AdultMatchMaker.com.au", "GayMatchMaker.com.au", "LesbianMatchMaker.com.au"]
+const sites = ['Show All', "Dating Guide", "Adult Dating Guide", "Swingers Dating Guide", "Gay Dating Guide", "Lesbian Dating Guide", "Fetish Dating Guide"]
 
 const columns = [
   { data: 'id', "className": "text-center" },
@@ -43,15 +43,16 @@ const resolveRouteFromClick = (e: any) => {
   e.preventDefault()
   const itemId = e.target.dataset.itemId
   if (!itemId) return
-  router.push('/admin/events/edit/' + itemId);
+  router.push('/admin/dg-home/edit/' + itemId);
 }
 
 </script>
 <template>
   <div class="max-w-xl mx-auto">
-    <h1 class="h2 font-bold mb-3">Sponsored Ads</h1>
+    <h1 class="h2 font-bold mb-3">
+      Edit Events on DatingGuide home pages</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
-      <InputField id="sponsoring" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
+      <InputField className="mb-0" :data="sites" type="select" forceselect />
       <div class="dropdown">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,6 +64,7 @@ const resolveRouteFromClick = (e: any) => {
           <li><a class="dropdown-item" href="#">Resume</a></li>
         </ul>
       </div>
+    <RouterLink to="/admin/dg-home/add-event" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Add Event</RouterLink>
     </div>
     <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
       class="table table-hover table-striped" width="100%">
@@ -71,7 +73,7 @@ const resolveRouteFromClick = (e: any) => {
           <th width="10%">Event ID</th>
           <th>Status</th>
           <th>Event Date</th>
-          <th>Event Name</th>
+          <th>Title</th>
           <th width="15%"></th>
         </tr>
       </thead>

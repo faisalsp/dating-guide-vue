@@ -68,7 +68,7 @@ const resolveRouteFromClick = (e: any) => {
   <div class="max-w-xl mx-auto">
     <h1 class="h2 font-bold mb-3">Travel Sponsored Ads</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
-      <InputField id="states" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
+      <InputField id="sponsoring" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
       <div class="dropdown">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
           data-bs-toggle="dropdown" aria-expanded="false">

@@ -40,6 +40,30 @@ const router = createRouter({
           component: () => import('@/views/admin/sponsored/Sponsored.vue')
         },
         {
+          path: 'homepage-listing',
+          component: () => import('@/views/admin/homelist/HomeListing.vue')
+        },
+        {
+          path: 'homepage-listing/add',
+          component: () => import('@/views/admin/homelist/AddListing.vue')
+        },
+        {
+          path: 'homepage-listing/preview',
+          component: () => import('@/views/admin/homelist/Preview.vue')
+        },
+        {
+          path: 'dg-home-listing',
+          component: () => import('@/views/admin/dghome/DGHomeListing.vue')
+        },
+        {
+          path: 'dg-home/add-event',
+          component: () => import('@/views/admin/dghome/CreateEditEvent.vue')
+        },
+        {
+          path: 'dg-home/edit/:id',
+          component: () => import('@/views/admin/dghome/CreateEditEvent.vue')
+        },
+        {
           path: 'travel/travel-events',
           component: () => import('@/views/admin/travel/TravelEvents.vue')
         },

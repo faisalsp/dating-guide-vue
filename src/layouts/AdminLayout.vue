@@ -52,10 +52,10 @@ import { RouterLink, RouterView } from 'vue-router'
                       <RouterLink to="/admin/sponsored" class="nav-link link-dark">Sponsored Ads</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">Home Page Listings</RouterLink>
+                      <RouterLink to="/admin/homepage-listing" class="nav-link link-dark">Home Page Listings</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/create-event" class="nav-link link-dark">DG Home Page Listings</RouterLink>
+                      <RouterLink to="/admin/dg-home-listing" class="nav-link link-dark">DG Home Page Listings</RouterLink>
                     </li>
                     <li>
                       <RouterLink to="/admin/admin-logins" class="nav-link link-dark">Logins</RouterLink>

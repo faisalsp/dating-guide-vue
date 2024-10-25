@@ -133,9 +133,10 @@ const getDay = computed(() => {
             </div>
             <div class="bg-amber p-4">
               <InputField id="event-1" name="eventpick" type="radio" v-model="event.eventPick" value="1" nowrapper
-                title="Event listing and full event details to appear on this website." checked />
+                title="Create a full listing so that your event can potentially be featured and you can add both a website and ticketing link."
+                checked />
               <InputField id="event-2" name="eventpick" type="radio" v-model="event.eventPick" value="2" nowrapper
-                title="Event listing which links directly to your website that has full details of your event." />
+                title="Create a short listing which links directly to your website." />
             </div>
           </div>
           <h2 class="h4 fw-bold mb-3" v-if="event.eventPick == '1'">
@@ -164,8 +165,9 @@ const getDay = computed(() => {
                     required nowrapper usekey />
                 </div>
                 <div class="col-6">
-                  <AjaxInput id="suburbs" :state="event.stateLoc" method="POST" type="text" title="City/Town/Suburb*" v-model="searchQuery"
-                  placeholder="City/Town/Suburb" param="suburbs" ajaxurl="/suburbs.json" nowrapper required />
+                  <AjaxInput id="suburbs" :state="event.stateLoc" method="POST" type="text" title="City/Town/Suburb*"
+                    v-model="searchQuery" placeholder="City/Town/Suburb" param="suburbs" ajaxurl="/suburbs.json"
+                    nowrapper required />
                 </div>
               </div>
             </div>
@@ -274,7 +276,7 @@ const getDay = computed(() => {
             <InputField id="featured" title="Featured Event on Contact Us" type="checkbox" className="mb-2" nowrapper />
             <InputField id="profile" title="Show this Linked to My Profile" type="checkbox" className="mb-2"
               nowrapper />
-            <InputField id="share" title="Share this on Facebook/Twitter" type="checkbox" className="mb-3" nowrapper />
+            <!-- <InputField id="share" title="Share this on Facebook/Twitter" type="checkbox" className="mb-3" nowrapper /> -->
           </div>
           <div class="d-block d-lg-none">
             <h2 class="text-xl fw-bold mb-2">Event Listing Preview</h2>
