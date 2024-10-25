@@ -43,7 +43,7 @@ import { RouterLink, RouterView } from 'vue-router'
                       <RouterLink to="/admin/events" class="nav-link link-dark">Edit Events</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/pending-events" class="nav-link link-dark">Pending Events</RouterLink>
+                      <RouterLink to="/admin/pending-events" class="nav-link link-dark">Pending Events <span class="badge rounded-circle text-bg-primary ms-1">3</span></RouterLink>
                     </li>
                     <li>
                       <RouterLink to="/admin/add-event" class="nav-link link-dark">Add Event for Member</RouterLink>

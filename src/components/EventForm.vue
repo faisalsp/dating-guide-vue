@@ -274,7 +274,7 @@ const getDay = computed(() => {
             <InputField id="masthead" title="MastHead Image" type="file" accept="image/jpeg, image/jpg"
               helper="Landscape banner, Max width 580px, Max height 170px, JPG format, file size less than 30k" />
             <InputField id="featured" title="Featured Event on Contact Us" type="checkbox" className="mb-2" nowrapper />
-            <InputField id="profile" title="Show this Linked to My Profile" type="checkbox" className="mb-2"
+            <InputField id="profile" v-if="event.eventType == 'Swingers Parties'" title="Show this Linked to My Profile" type="checkbox" className="mb-2"
               nowrapper />
             <!-- <InputField id="share" title="Share this on Facebook/Twitter" type="checkbox" className="mb-3" nowrapper /> -->
           </div>
