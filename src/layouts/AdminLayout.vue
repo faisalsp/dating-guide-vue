@@ -20,14 +20,14 @@ import { RouterLink, RouterView } from 'vue-router'
   <div class="container-fluid">
     <div class="row">
       <div class="h-100 sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-        <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+        <div class="offcanvas-md offcanvas-end bg-body-tertiary overflow-y-auto h-100" tabindex="-1" id="sidebarMenu"
           aria-labelledby="sidebarMenuLabel">
           <div class="offcanvas-header">
             <img src="@/assets/images/logo.png" alt="Logo" />
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
               aria-label="Close"></button>
           </div>
-          <div class="mt-lg-5 offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+          <div class="mt-lg-5 offcanvas-body d-md-flex flex-column p-0 pt-lg-3">
             <ul class="nav flex-column">
               <li class="nav-item">
                 <button
@@ -81,7 +81,7 @@ import { RouterLink, RouterView } from 'vue-router'
                       <RouterLink to="/admin/travel/travel-sponsored" class="nav-link link-dark">Travel SponsoredAds</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/travel/travel-events-pending" class="nav-link link-dark">Travel Events Pending (0)</RouterLink>
+                      <RouterLink to="/admin/travel/travel-events-pending" class="nav-link link-dark">Travel Events Pending <span class="badge rounded-circle text-bg-primary ms-1">0</span></RouterLink>
                     </li>
                   </ul>
                 </div>
@@ -101,7 +101,7 @@ import { RouterLink, RouterView } from 'vue-router'
                       <RouterLink to="/admin/clubs" class="nav-link link-dark">Clubs</RouterLink>
                     </li>
                     <li>
-                      <RouterLink to="/admin/pending-clubs" class="nav-link link-dark">Pending Clubs (0)</RouterLink>
+                      <RouterLink to="/admin/pending-clubs" class="nav-link link-dark">Pending Clubs <span class="badge rounded-circle text-bg-primary ms-1">0</span></RouterLink>
                     </li>
                   </ul>
                 </div>
