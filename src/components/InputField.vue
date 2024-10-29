@@ -103,7 +103,7 @@ watch(textModel, (newValue: any) => {
 </script>
 <template>
     <div v-if="type === 'text' || type === 'email' || type === 'color'"
-        :class="nowrapper ? className : className + ' mb-3'">
+        :class="nowrapper ? (className ? className + ' mb-3' : 'mb-3') : 'mb-3'">
         <label :for="id" v-if="title" class="form-label small fw-medium">{{ title }}</label>
         <input :type="type" v-model="textModel" :id="id"
             :class="type === 'color' ? 'form-control form-control-color' : 'form-control'" :placeholder="placeholder"
@@ -155,7 +155,7 @@ watch(textModel, (newValue: any) => {
 
     <div v-if="type === 'file'" :class="nowrapper ? className : 'mb-3'">
         <img :src="imagePreview" class="mw-100" alt="Image Preview" v-if="imagePreview" />
-        <button v-if="imagePreview" class="d-block btn btn-danger btn-sm bg-danger mb-2"
+        <button v-if="imagePreview" class="d-block btn btn-danger btn-sm bg-danger mt-2 mb-2"
             @click="resetFileInput">Remove</button>
         <label class="form-label small fw-medium" :for="id">{{ title }}</label>
         <input class="form-control" :id="id" type="file" @change="onFileChange" :accept="accept" ref="fileInput"

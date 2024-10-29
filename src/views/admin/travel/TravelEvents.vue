@@ -38,7 +38,7 @@ const resolveRouteFromClick = (e: any) => {
     e.preventDefault()
     const itemId = e.target.dataset.itemId
     if (!itemId) return
-    router.push('/admin/events/edit/' + itemId);
+    router.push('/admin/travel/travel-events/edit/' + itemId);
   } else {
     const checkedValues: string[] = [];
     const checkboxes = document.querySelector('.dataTable')?.querySelectorAll('input[type="checkbox"]:checked');
@@ -71,7 +71,7 @@ const resolveRouteFromClick = (e: any) => {
           <li><a class="dropdown-item" href="#">View</a></li>
         </ul>
       </div>
-      <RouterLink to="/admin/create-event" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Add event</RouterLink>
+      <RouterLink to="/admin/travel/travel-events/add" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Add event</RouterLink>
 
     </div>
     <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"

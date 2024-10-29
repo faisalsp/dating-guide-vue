@@ -76,6 +76,14 @@ const router = createRouter({
           component: () => import('@/views/admin/travel/TravelEvents.vue')
         },
         {
+          path: 'travel/travel-events/add',
+          component: () => import('@/views/admin/travel/CreateEditTravel.vue')
+        },
+        {
+          path: 'travel/travel-events/edit/:id',
+          component: () => import('@/views/admin/travel/CreateEditTravel.vue')
+        },
+        {
           path: 'travel/travel-sponsored',
           component: () => import('@/views/admin/travel/TravelSponsored.vue')
         },
