@@ -6,7 +6,7 @@ defineComponent({ name: 'PendingEvents' })
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-4">
       <h1 class="h2 font-bold mb-0">Pending Events</h1>
       <span class="fw-medium">Pending events remaining<span class="badge rounded-circle text-bg-primary ms-1">3</span></span>

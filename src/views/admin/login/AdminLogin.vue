@@ -4,7 +4,7 @@ import { defineComponent } from 'vue';
 defineComponent({ name: 'AdminLogin' });
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <form action="" method="post">
       <div class="mb-3">
         <h1 class="h2 font-bold">Create user account</h1>

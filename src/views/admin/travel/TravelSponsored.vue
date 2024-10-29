@@ -20,7 +20,7 @@ const columns = [
   {
     data: 'status',
     render: (data: string) => {
-      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`
+      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`
     }
   },
   {
@@ -65,7 +65,7 @@ const resolveRouteFromClick = (e: any) => {
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Travel Sponsored Ads</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
       <InputField id="sponsoring" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />

@@ -102,9 +102,11 @@ watch(textModel, (newValue: any) => {
 
 </script>
 <template>
-    <div v-if="type === 'text' || type === 'email'" :class="nowrapper ? className : className + ' mb-3'">
+    <div v-if="type === 'text' || type === 'email' || type === 'color'"
+        :class="nowrapper ? className : className + ' mb-3'">
         <label :for="id" v-if="title" class="form-label small fw-medium">{{ title }}</label>
-        <input :type="type" v-model="textModel" :id="id" class="form-control" :placeholder="placeholder"
+        <input :type="type" v-model="textModel" :id="id"
+            :class="type === 'color' ? 'form-control form-control-color' : 'form-control'" :placeholder="placeholder"
             :required="!!required" />
         <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
     </div>
@@ -115,7 +117,7 @@ watch(textModel, (newValue: any) => {
         <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
     </div>
     <div v-if="type === 'textarea'" :class="nowrapper ? className : 'mb-3'">
-        <label :for="id" class="form-label small fw-medium">{{ title }}</label>
+        <label :for="id" v-if="title" class="form-label small fw-medium">{{ title }}</label>
         <textarea :rows="rows" :id="id" v-model="textModel" ref="textareaRef" :required="!!required"
             :placeholder="placeholder" class="form-control"></textarea>
         <p v-if="helper" class="form-text fst-italic">{{ helper }}</p>
@@ -156,7 +158,8 @@ watch(textModel, (newValue: any) => {
         <button v-if="imagePreview" class="d-block btn btn-danger btn-sm bg-danger mb-2"
             @click="resetFileInput">Remove</button>
         <label class="form-label small fw-medium" :for="id">{{ title }}</label>
-        <input class="form-control" :id="id" type="file" @change="onFileChange" :accept="accept" ref="fileInput" :required="!!required">
+        <input class="form-control" :id="id" type="file" @change="onFileChange" :accept="accept" ref="fileInput"
+            :required="!!required">
         <div class="form-text" :id="id + '_help'">{{ helper }}</div>
     </div>
 </template>

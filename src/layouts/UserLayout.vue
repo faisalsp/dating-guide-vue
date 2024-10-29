@@ -76,7 +76,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </div>
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 my-5">
-        <RouterView class="mt-4" />
+        <RouterView class="container mx-auto py-3 mt-4" />
       </main>
     </div>
   </div>

@@ -8,7 +8,7 @@ const sites = ['adultmatchmaker.com.au', "gaymatchmaker.com.au", "lesbianmatchma
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Home Page Listings Preview</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
       <InputField title="Your Current home page listings on" className="mb-0" :data="sites" type="select" forceselect />

@@ -29,13 +29,18 @@
   cursor: pointer;
 }
 
-table.table {
+table.table:not(.auto) {
   min-width: 1000px;
 }
 
 div.dt-container div.dt-layout-full {
   position: relative;
-  overflow: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mail-table thead th {
+  width: 50%;
 }
 
 @media (min-width: 992px) {
@@ -47,5 +52,9 @@ div.dt-container div.dt-layout-full {
 @media (max-width: 992px) {
   .sidebar {
     position: relative;
+  }
+  
+  .mail-table thead th {
+    width: 100%;
   }
 }

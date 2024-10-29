@@ -13,7 +13,7 @@ const createEvent = async () => {
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <form action="" method="post" @submit.prevent="createEvent">
       <div class="mb-3">
         <h1 class="h2 font-bold">Add New Event for Member</h1>

@@ -27,7 +27,7 @@ const columns = [
   {
     data: 'status',
     render: (data: string, type: any, row: { id: number }) => {
-      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`
+      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`
     }
   },
 ]
@@ -55,7 +55,7 @@ const resolveRouteFromClick = (e: any) => {
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Event List</h1>
     <div class="d-flex gap-2 flex-wrap align-items-center">
       <div class="dropdown">

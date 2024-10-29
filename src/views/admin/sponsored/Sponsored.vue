@@ -7,7 +7,7 @@ import InputField from '@/components/InputField.vue';
 
 DataTable.use(DataTablesCore);
 
-defineComponent({ name: 'EventList' })
+defineComponent({ name: 'SponsoredList' })
 
 const sites = ['All Dating Sites', "AdultMatchMaker.com.au", "GayMatchMaker.com.au", "LesbianMatchMaker.com.au"]
 
@@ -16,7 +16,7 @@ const columns = [
   {
     data: 'status',
     render: (data: string) => {
-      return `<span class="w-50 badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`
+      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`
     }
   },
   {
@@ -43,26 +43,17 @@ const resolveRouteFromClick = (e: any) => {
   e.preventDefault()
   const itemId = e.target.dataset.itemId
   if (!itemId) return
-  router.push('/admin/events/edit/' + itemId);
+  router.push('/admin/sponsored/edit/' + itemId);
 }
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Sponsored Ads</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
       <InputField id="sponsoring" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
-      <div class="dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Actions
-        </button>
-        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="#">Delete</a></li>
-          <li><a class="dropdown-item" href="#">Pause</a></li>
-          <li><a class="dropdown-item" href="#">Resume</a></li>
-        </ul>
-      </div>
+      <RouterLink to="/admin/sponsored/add" class="btn btn-primary"><i
+          class="gigacon gigacon-plus-sign me-2"></i>New</RouterLink>
     </div>
     <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
       class="table table-hover table-striped" width="100%">

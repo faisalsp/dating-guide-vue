@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import InputField from '@/components/InputField.vue'
 
 defineComponent({ name: 'CreateEditDGHomeEvent' })

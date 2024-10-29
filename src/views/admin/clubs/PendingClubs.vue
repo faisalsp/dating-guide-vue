@@ -6,7 +6,7 @@ defineComponent({ name: 'PendingClubs' })
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Pending Clubs</h1>
     <div class="row g-3">
       <div v-for="index in 3" :key="index" class="col-md-6">

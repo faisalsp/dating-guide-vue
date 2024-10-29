@@ -40,6 +40,14 @@ const router = createRouter({
           component: () => import('@/views/admin/sponsored/Sponsored.vue')
         },
         {
+          path: 'sponsored/add',
+          component: () => import('@/views/admin/sponsored/CreateEditSponsored.vue')
+        },
+        {
+          path: 'sponsored/edit/:id',
+          component: () => import('@/views/admin/sponsored/CreateEditSponsored.vue')
+        },
+        {
           path: 'homepage-listing',
           component: () => import('@/views/admin/homelist/HomeListing.vue')
         },
@@ -86,6 +94,10 @@ const router = createRouter({
         {
           path: 'add-club',
           component: () => import('@/views/admin/clubs/CreateEditClub.vue')
+        },
+        {
+          path: 'mail',
+          component: () => import('@/views/admin/mail/MailList.vue')
         },
         {
           path: 'admin-logins',

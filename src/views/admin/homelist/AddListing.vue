@@ -37,7 +37,7 @@ const columns = [
 
 </script>
 <template>
-  <div class="max-w-xl mx-auto">
+  <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Add - Home Page Listings</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
       <InputField title="Current Active Sponsored Ads on" className="mb-0" :data="sites" type="select" forceselect />
