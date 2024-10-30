@@ -92,6 +92,15 @@ const router = createRouter({
           component: () => import('@/views/admin/travel/TravelSponsored.vue')
         },
         {
+          path: 'travel/travel-sponsored/add',
+          component: () => import('@/views/admin/travel/sponsored/CreateEditSponsored.vue')
+        },
+        {
+          path: 'travel/travel-sponsored/edit/:id',
+          component: () => import('@/views/admin/travel/sponsored/CreateEditSponsored.vue')
+        },
+        
+        {
           path: 'clubs',
           component: () => import('@/views/admin/clubs/Clubs.vue')
         },

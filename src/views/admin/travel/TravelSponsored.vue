@@ -36,8 +36,8 @@ const columns = [
     data: 'id',
     "orderable": false,
     render: (data: string, type: any, row: { id: number }) => {
-      return `<a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>
-      <a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-star me-1"></i>Select</a>`
+      return `<a href="#" class="ms-3 text-dark text-decoration-none edit" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>
+      <a href="#" class="ms-3 text-dark text-decoration-none add" data-item-id='${row.id}'><i class="gigacon gigacon-star me-1"></i>Select</a>`
     }
   },
 ]
@@ -48,7 +48,11 @@ const resolveRouteFromClick = (e: any) => {
     e.preventDefault()
     const itemId = e.target.dataset.itemId
     if (!itemId) return
-    router.push('/admin/events/edit/' + itemId);
+    if (e.target.classList.contains('edit')) {
+      router.push('/admin/travel/travel-sponsored/edit/' + itemId);
+    } else {
+      router.push('/admin/travel/travel-sponsored/add');
+    }
   } else {
     const checkedValues: string[] = [];
     const checkboxes = document.querySelector('.dataTable')?.querySelectorAll('input[type="checkbox"]:checked');

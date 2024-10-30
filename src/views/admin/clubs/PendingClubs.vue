@@ -7,22 +7,21 @@ defineComponent({ name: 'PendingClubs' })
 </script>
 <template>
   <div class="mx-auto">
-    <h1 class="h2 font-bold mb-3">Pending Clubs</h1>
+    <div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-4">
+      <h1 class="h2 font-bold mb-0">Pending Clubs</h1>
+      <span class="fw-medium">Pending clubs remaining<span
+          class="badge rounded-circle text-bg-primary ms-1">3</span></span>
+    </div>
     <div class="row g-3">
       <div v-for="index in 3" :key="index" class="col-md-6">
         <div class="card">
           <div class="card-body">
-            <div class="p-2">
+            <div class="p-2"> <img src="https://placehold.co/500x500" class="mw-100 object-fit-cover my-2"
+              height="120" alt="">
               <a href="#" class="d-block h4 underline text-primary">Lorem ipsum dolor sit amet</a>
-              <small class="text-xs fw-bold">Friday, 18 October 2024 <span>(08.00 PM)</span></small>
-              <p class="mb-0">A night of debauchery and socialising come have some fun or just watch at couples and
-                girls only swingers party.</p>
-              <p class="small text-success mb-0">Event Type: <span class="fw-medium text-black">Swingers
-                  Parties</span></p>
-              <p class="small text-success mb-0">Age Group: <span class="fw-medium text-black">18 - 60</span></p>
-              <p class="small text-success mb-0">Location: <span class="fw-medium text-black">Victoria<span>,
-                    Eltham</span></span></p>
-              <a href="#" target="_blank" class="d-inline-block text-blue-700 underline small mb-2">More Info</a>
+              <p class="mb-0">An out of the ordinary nightlife experience</p>
+              <p class="small text-success mb-0">Club Type: <span class="fw-medium text-black">Woman Only</span></p>
+              <p class="small text-success mb-2">Service: <span class="fw-medium text-black">Swinger Parties</span></p>
 
               <div class="d-flex flex-wrap column-gap-3">
                 <InputField :id="'adultMM' + index" type="checkbox" title="AdultMM" nowrapper />
@@ -33,7 +32,8 @@ defineComponent({ name: 'PendingClubs' })
                 <InputField :id="'aussieMM' + index" type="checkbox" title="AussieMM" nowrapper />
               </div>
               <small class="my-2 d-block text-xs fw-bold fst-italic">Submitted by: <span
-                  class="fw-medium text-black">John Doe</span></small>
+                  class="fw-medium text-black">John
+                  Doe</span></small>
               <div class="d-flex gap-2 flex-wrap mt-3 align-items-center justify-content-between">
                 <div class="d-flex gap-2 flex-wrap">
                   <button type="submit" class="btn btn-danger text-center">Reject Club</button>
