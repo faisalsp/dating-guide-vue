@@ -29,6 +29,13 @@
   cursor: pointer;
 }
 
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 table.table:not(.auto) {
   min-width: 1000px;
 }
@@ -44,8 +51,16 @@ div.dt-container div.dt-layout-full {
 }
 
 @media (min-width: 992px) {
+  .w-lg-25 {
+    width: 25% !important;
+  }
+
   .w-lg-50 {
     width: 50% !important;
+  }
+
+  .w-lg-75 {
+    width: 75% !important;
   }
 }
 
@@ -53,7 +68,7 @@ div.dt-container div.dt-layout-full {
   .sidebar {
     position: relative;
   }
-  
+
   .mail-table thead th {
     width: 100%;
   }

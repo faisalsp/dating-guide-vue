@@ -200,6 +200,7 @@ const getDay = computed(() => {
             v-model="event.website" placeholder="https://" :required="event.eventPick == '2'" />
 
           <InputField id="event" title="Event Type*" type="select" v-model="event.eventType" :data="events" required />
+          <InputField id="ammmemberid" v-if="!is_admin && event.eventType === 'Swingers Parties'" title="AMM Email/Username" type="text" helper="We can link this event to your AMM profile for RSVPs, please provide your email/username" />
 
           <div class="mb-3">
             <div class="row">

@@ -103,7 +103,7 @@ watch(textModel, (newValue: any) => {
 </script>
 <template>
     <div v-if="type === 'text' || type === 'email' || type === 'color'"
-        :class="nowrapper ? (className ? className + ' mb-3' : 'mb-3') : 'mb-3'">
+        :class="nowrapper ? (className ? className : 'mb-3') : 'mb-3'">
         <label :for="id" v-if="title" class="form-label small fw-medium">{{ title }}</label>
         <input :type="type" v-model="textModel" :id="id"
             :class="type === 'color' ? 'form-control form-control-color' : 'form-control'" :placeholder="placeholder"
