@@ -84,6 +84,10 @@ const router = createRouter({
           component: () => import('@/views/admin/travel/CreateEditTravel.vue')
         },
         {
+          path: 'travel/travel-events-pending',
+          component: () => import('@/views/admin/travel/PendingEvents.vue')
+        },
+        {
           path: 'travel/travel-sponsored',
           component: () => import('@/views/admin/travel/TravelSponsored.vue')
         },
