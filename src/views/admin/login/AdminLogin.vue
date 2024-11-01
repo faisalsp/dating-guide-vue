@@ -14,7 +14,13 @@ defineComponent({ name: 'AdminLogin' });
         <div class="d-flex gap-2">
           <div class="relative w-lg-50">
             <div class="input-group">
-              <input type="email" id="email" class="form-control" placeholder="john@mail.com" required />
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="john@mail.com"
+                required
+              />
               <button type="submit" class="btn btn-primary text-center">Search</button>
             </div>
             <p class="form-text fst-italic">Search first to determine if member exists</p>

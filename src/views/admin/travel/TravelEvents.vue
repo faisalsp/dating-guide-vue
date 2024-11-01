@@ -6,19 +6,24 @@ import DataTablesCore from 'datatables.net-bs5';
 
 DataTable.use(DataTablesCore);
 
-defineComponent({ name: 'TravelEvents' })
+defineComponent({ name: 'TravelEvents' });
 
 const columns = [
   {
-    data: 'id', render: (data: number) => {
-      return `<input type="checkbox" class="me-3" value="${data}">${data}`
+    data: 'id',
+    render: (data: number) => {
+      return `<input type="checkbox" class="me-3" value="${data}">${data}`;
     }
   },
   {
     data: 'start_date',
     render: (data: string) => {
       const date = new Date(data);
-      const options = { year: 'numeric' as 'numeric', month: 'long' as 'long', day: 'numeric' as 'numeric' };
+      const options = {
+        year: 'numeric' as 'numeric',
+        month: 'long' as 'long',
+        day: 'numeric' as 'numeric'
+      };
       return date.toLocaleDateString('en-AU', options);
     }
   },
@@ -27,40 +32,46 @@ const columns = [
   {
     data: 'status',
     render: (data: string, type: any, row: { id: number }) => {
-      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`
+      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span><a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`;
     }
-  },
-]
+  }
+];
 
-const router = useRouter()
+const router = useRouter();
 const resolveRouteFromClick = (e: any) => {
   if (e.target.type !== 'checkbox') {
-    e.preventDefault()
-    const itemId = e.target.dataset.itemId
-    if (!itemId) return
+    e.preventDefault();
+    const itemId = e.target.dataset.itemId;
+    if (!itemId) return;
     router.push('/admin/travel/travel-events/edit/' + itemId);
   } else {
     const checkedValues: string[] = [];
-    const checkboxes = document.querySelector('.dataTable')?.querySelectorAll('input[type="checkbox"]:checked');
+    const checkboxes = document
+      .querySelector('.dataTable')
+      ?.querySelectorAll('input[type="checkbox"]:checked');
     if (checkboxes) {
       checkboxes.forEach(function (checkbox) {
         if (checkbox instanceof HTMLInputElement) {
           checkedValues.push(checkbox.value);
         }
-      })
+      });
       console.log(checkedValues);
     }
   }
-}
-
+};
 </script>
 <template>
   <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Find Travel Events</h1>
     <div class="d-flex gap-2 flex-wrap align-items-center">
       <div class="dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
+        <button
+          class="btn btn-outline-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
           Actions
         </button>
         <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
@@ -71,11 +82,17 @@ const resolveRouteFromClick = (e: any) => {
           <li><a class="dropdown-item" href="#">View</a></li>
         </ul>
       </div>
-      <RouterLink to="/admin/travel/travel-events/add" class="btn btn-primary"><i class="gigacon gigacon-plus-sign me-2"></i>Add event</RouterLink>
-
+      <RouterLink to="/admin/travel/travel-events/add" class="btn btn-primary"
+        ><i class="gigacon gigacon-plus-sign me-2"></i>Add event</RouterLink
+      >
     </div>
-    <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
-      class="table table-hover table-striped" width="100%">
+    <DataTable
+      :columns="columns"
+      ajax="/data.json"
+      @click="resolveRouteFromClick($event)"
+      class="table table-hover table-striped"
+      width="100%"
+    >
       <thead>
         <tr>
           <th>Event ID</th>
@@ -87,7 +104,6 @@ const resolveRouteFromClick = (e: any) => {
       </thead>
     </DataTable>
   </div>
-
 </template>
 <style>
 @import 'datatables.net-bs5';

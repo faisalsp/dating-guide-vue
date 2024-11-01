@@ -7,56 +7,77 @@ import InputField from '@/components/InputField.vue';
 
 DataTable.use(DataTablesCore);
 
-defineComponent({ name: 'SponsoredList' })
+defineComponent({ name: 'SponsoredList' });
 
-const sites = ['All Dating Sites', "AdultMatchMaker.com.au", "GayMatchMaker.com.au", "LesbianMatchMaker.com.au"]
+const sites = [
+  'All Dating Sites',
+  'AdultMatchMaker.com.au',
+  'GayMatchMaker.com.au',
+  'LesbianMatchMaker.com.au'
+];
 
 const columns = [
-  { data: 'id', "className": "text-center" },
+  { data: 'id', className: 'text-center' },
   {
     data: 'status',
     render: (data: string) => {
-      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`
+      return `<span class="badge bg-${data === 'Active' ? 'success' : 'danger'}">${data}</span>`;
     }
   },
   {
     data: 'start_date',
     render: (data: string) => {
       const date = new Date(data);
-      const options = { year: 'numeric' as 'numeric', month: 'long' as 'long', day: 'numeric' as 'numeric' };
+      const options = {
+        year: 'numeric' as 'numeric',
+        month: 'long' as 'long',
+        day: 'numeric' as 'numeric'
+      };
       return date.toLocaleDateString('en-AU', options);
     }
   },
   { data: 'name' },
   {
     data: 'id',
-    "orderable": false,
+    orderable: false,
     render: (data: string, type: any, row: { id: number }) => {
       return `<a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>
-      <a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-bin me-1"></i>Delete</a>`
+      <a href="#" class="ms-3 text-dark text-decoration-none" data-item-id='${row.id}'><i class="gigacon gigacon-bin me-1"></i>Delete</a>`;
     }
-  },
-]
+  }
+];
 
-const router = useRouter()
+const router = useRouter();
 const resolveRouteFromClick = (e: any) => {
-  e.preventDefault()
-  const itemId = e.target.dataset.itemId
-  if (!itemId) return
+  e.preventDefault();
+  const itemId = e.target.dataset.itemId;
+  if (!itemId) return;
   router.push('/admin/sponsored/edit/' + itemId);
-}
-
+};
 </script>
 <template>
   <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Sponsored Ads</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
-      <InputField id="sponsoring" title="Sponsoring Site" className="mb-0" :data="sites" type="select" forceselect />
-      <RouterLink to="/admin/sponsored/add" class="btn btn-primary"><i
-          class="gigacon gigacon-plus-sign me-2"></i>New</RouterLink>
+      <InputField
+        id="sponsoring"
+        title="Sponsoring Site"
+        className="mb-0"
+        :data="sites"
+        type="select"
+        forceselect
+      />
+      <RouterLink to="/admin/sponsored/add" class="btn btn-primary"
+        ><i class="gigacon gigacon-plus-sign me-2"></i>New</RouterLink
+      >
     </div>
-    <DataTable :columns="columns" ajax="/data.json" @click="resolveRouteFromClick($event)"
-      class="table table-hover table-striped" width="100%">
+    <DataTable
+      :columns="columns"
+      ajax="/data.json"
+      @click="resolveRouteFromClick($event)"
+      class="table table-hover table-striped"
+      width="100%"
+    >
       <thead>
         <tr>
           <th width="10%">Event ID</th>
@@ -68,7 +89,6 @@ const resolveRouteFromClick = (e: any) => {
       </thead>
     </DataTable>
   </div>
-
 </template>
 <style>
 @import 'datatables.net-bs5';

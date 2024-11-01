@@ -5,12 +5,11 @@ import AjaxInput from '../../../components/AjaxInput.vue';
 
 defineComponent({ name: 'AddEvent' });
 
-const searchQuery = defineModel()
-const router = useRouter()
+const searchQuery = defineModel();
+const router = useRouter();
 const createEvent = async () => {
-  router.push({ path: '/admin/create-event', query: { email: searchQuery.value as string } })
-}
-
+  router.push({ path: '/admin/create-event', query: { email: searchQuery.value as string } });
+};
 </script>
 <template>
   <div class="mx-auto">
@@ -23,13 +22,21 @@ const createEvent = async () => {
         <label for="email" class="form-label fw-medium">Enter part of email*</label>
         <div class="d-flex gap-2 flex-wrap">
           <div class="relative w-100 w-lg-50">
-            <AjaxInput id="email" type="email" title="" placeholder="john@mail.com" v-model="searchQuery" data="email"
-              param="users" ajaxurl="https://dummyjson.com/users/search?limit=10&q=" required />
+            <AjaxInput
+              id="email"
+              type="email"
+              title=""
+              placeholder="john@mail.com"
+              v-model="searchQuery"
+              data="email"
+              param="users"
+              ajaxurl="https://dummyjson.com/users/search?limit=10&q="
+              required
+            />
           </div>
           <button type="submit" class="btn btn-primary text-center">Add Event For Member</button>
         </div>
       </div>
     </form>
   </div>
-
 </template>

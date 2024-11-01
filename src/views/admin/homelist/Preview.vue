@@ -2,17 +2,22 @@
 import { defineComponent } from 'vue';
 import InputField from '@/components/InputField.vue';
 
-defineComponent({ name: 'HomeListingPreview' })
+defineComponent({ name: 'HomeListingPreview' });
 
-const sites = ['adultmatchmaker.com.au', "gaymatchmaker.com.au", "lesbianmatchmaker.com.au"]
-
+const sites = ['adultmatchmaker.com.au', 'gaymatchmaker.com.au', 'lesbianmatchmaker.com.au'];
 </script>
 <template>
   <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Home Page Listings Preview</h1>
     <div class="d-flex gap-2 flex-wrap mb-3 align-items-end">
-      <InputField title="Your Current home page listings on" className="mb-0" :data="sites" type="select" forceselect />
-      
+      <InputField
+        title="Your Current home page listings on"
+        className="mb-0"
+        :data="sites"
+        type="select"
+        forceselect
+      />
+
       <RouterLink to="/admin/homepage-listing/add" class="btn btn-primary">
         <i class="gigacon gigacon-plus-sign me-2"></i>Add
       </RouterLink>
@@ -24,5 +29,4 @@ const sites = ['adultmatchmaker.com.au', "gaymatchmaker.com.au", "lesbianmatchma
       </a>
     </div>
   </div>
-
 </template>

@@ -99,7 +99,7 @@ const router = createRouter({
           path: 'travel/travel-sponsored/edit/:id',
           component: () => import('@/views/admin/travel/sponsored/CreateEditSponsored.vue')
         },
-        
+
         {
           path: 'clubs',
           component: () => import('@/views/admin/clubs/Clubs.vue')
