@@ -8,6 +8,7 @@ defineComponent({ name: 'EventForm' });
 interface Event {
   eventName: string;
   eventDesc: string;
+  clubName: string;
   fullEventDesc: string;
   stateLoc: string;
   suburbLoc: string;
@@ -45,7 +46,6 @@ interface Options {
 
 const route = useRoute();
 const is_admin = route.matched[0].path === '/admin' ? true : false;
-const searchQuery = defineModel();
 const idParam = Number(route.params.id);
 const emailParam = route.query.email;
 
@@ -96,6 +96,7 @@ const event = ref<Event>({
   eventDesc: '',
   fullEventDesc: '',
   stateLoc: 'New South Wales',
+  clubName: '',
   suburbLoc: '',
   dateVal: curDate.value,
   website: '',
@@ -283,7 +284,7 @@ const getDay = computed(() => {
               v-if="is_admin"
               type="text"
               title="Club"
-              v-model="searchQuery"
+              v-model="event.clubName"
               param="clubName"
               ajaxurl="/clubs.json"
             />
@@ -312,7 +313,7 @@ const getDay = computed(() => {
                     method="POST"
                     type="text"
                     title="City/Town/Suburb*"
-                    v-model="searchQuery"
+                    v-model="event.suburbLoc"
                     placeholder="City/Town/Suburb"
                     param="suburbs"
                     ajaxurl="/suburbs.json"
