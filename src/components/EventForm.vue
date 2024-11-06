@@ -25,6 +25,13 @@ interface Event {
   ageStart: number | string | undefined;
   ageEnd: number | string;
   occur2: boolean;
+  venueAddress: string;
+  dressCode: string;
+  rules: string;
+  bookings: string;
+  cost: string;
+  ctEmail: string;
+  otContactInfo: string;
 }
 
 interface Options {
@@ -103,7 +110,14 @@ const event = ref<Event>({
   occur1: false,
   ageStart: 18,
   ageEnd: 18,
-  occur2: false
+  occur2: false,
+  venueAddress: '',
+  dressCode: '',
+  rules: '',
+  bookings: '',
+  cost: '',
+  ctEmail: '',
+  otContactInfo: ''
 });
 
 const options = ref<Options>({
@@ -133,11 +147,14 @@ const getDay = computed(() => {
 <template>
   <div class="">
     <div class="row g-5">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 col-lg-9">
         <form action="" method="post" class="">
           <div class="mb-3">
             <h1 class="mb-0 fw-bold h2">{{ idParam ? 'Edit Event 1' : 'Submit an Event' }}</h1>
-            <small>Please enter your event details below:</small>
+
+            <p class="my-2" v-if="emailParam">
+              Event for: <span class="d-block fst-italic fw-bold">{{ emailParam }}</span>
+            </p>
           </div>
           <div class="mb-3">
             <div class="mb-2">
@@ -171,6 +188,74 @@ const getDay = computed(() => {
           <h2 class="h4 fw-bold mb-3" v-if="event.eventPick == '2'">
             Event Listing that Links to My Website
           </h2>
+          <hr />
+          <div class="">
+            <h3 class="h5 fw-bold mb-3">Event Listing Preview</h3>
+            <div class="mb-3">
+              <img src="https://placehold.co/500x130" class="w-100 mb-3" alt="" />
+              <h4 href="#" class="d-block h4 underline" v-if="event.eventName">
+                {{ event.eventName }}
+              </h4>
+              <small class="d-block fw-bold mb-3"
+                >{{ getDay }}, {{ event.dateVal }} {{ event.monthVal }} {{ event.yearVal }}
+                <span v-if="event.getTime">({{ event.getTime }})</span></small
+              >
+              <p v-if="event.eventDesc && event.eventPick == '2'" class="mb-0 pre-wrap">
+                {{ event.eventDesc }}
+              </p>
+              <p v-if="event.fullEventDesc" class="mb-0 pre-wrap">{{ event.fullEventDesc }}</p>
+              <div class="table-responsive mt-3">
+                <table class="table auto">
+                  <tbody>
+                    <tr v-if="event.venueAddress">
+                      <td><span class="fw-bold">Venue:</span></td>
+                      <td class="pre-wrap">{{ event.venueAddress }}</td>
+                    </tr>
+                    <tr v-if="event.cost">
+                      <td><span class="fw-bold">Cost:</span></td>
+                      <td class="pre-wrap">{{ event.cost }}</td>
+                    </tr>
+                    <tr v-if="event.otContactInfo">
+                      <td><span class="fw-bold">Contact Info:</span></td>
+                      <td class="pre-wrap">
+                        {{ event.otContactInfo }}
+                      </td>
+                    </tr>
+                    <tr v-if="event.bookings">
+                      <td><span class="fw-bold">Bookings:</span></td>
+                      <td class="pre-wrap">
+                        {{ event.bookings }}
+                      </td>
+                    </tr>
+                    <tr v-if="event.dressCode">
+                      <td><span class="fw-bold">Dress Code:</span></td>
+                      <td class="pre-wrap">{{ event.dressCode }}</td>
+                    </tr>
+                    <tr v-if="event.rules">
+                      <td><span class="fw-bold">Rules:</span></td>
+                      <td class="pre-wrap">{{ event.rules }}</td>
+                    </tr>
+                    <tr v-if="event.ctEmail">
+                      <td><span class="fw-bold">Contact Email:</span></td>
+                      <td>
+                        <a
+                          :href="`mailto:${event.ctEmail}?subject=&amp;body=Inquiring%20about%20event%20on%20-%20${getDay}, ${event.dateVal} ${event.monthVal} ${event.yearVal}%20%20%20${event.getTime}`"
+                          >email event organiser
+                        </a>
+                      </td>
+                    </tr>
+                    <tr v-if="event.website">
+                      <td><span class="fw-bold">Website:</span></td>
+                      <td>
+                        <a :href="event.website" target="_blank">{{ event.website }}</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Please enter your event details below:</h3>
+          </div>
           <InputField
             id="eventName"
             title="Event Name*"
@@ -209,7 +294,7 @@ const getDay = computed(() => {
             </div>
             <div class="bg-amber p-3">
               <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6">
                   <InputField
                     id="states"
                     title="State*"
@@ -217,11 +302,10 @@ const getDay = computed(() => {
                     type="select"
                     v-model="event.stateLoc"
                     required
-                    nowrapper
                     usekey
                   />
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6">
                   <AjaxInput
                     id="suburbs"
                     :state="event.stateLoc"
@@ -232,7 +316,6 @@ const getDay = computed(() => {
                     placeholder="City/Town/Suburb"
                     param="suburbs"
                     ajaxurl="/suburbs.json"
-                    nowrapper
                     required
                   />
                 </div>
@@ -245,9 +328,9 @@ const getDay = computed(() => {
             </div>
             <div class="bg-amber p-3">
               <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6">
                   <span class="d-block mb-2 small fw-medium text-gray-900">Date*</span>
-                  <div class="d-flex gap-1">
+                  <div class="d-flex flex-wrap gap-1">
                     <InputField
                       id="day"
                       type="select"
@@ -255,7 +338,6 @@ const getDay = computed(() => {
                       :data="options.days"
                       :selected="curDate"
                       required
-                      nowrapper
                     />
                     <InputField
                       id="month"
@@ -264,7 +346,6 @@ const getDay = computed(() => {
                       :data="options.months"
                       :selected="curMonth"
                       required
-                      nowrapper
                     />
                     <InputField
                       id="year"
@@ -273,11 +354,10 @@ const getDay = computed(() => {
                       :data="options.years"
                       :selected="curYear"
                       required
-                      nowrapper
                     />
                   </div>
                 </div>
-                <div class="col-6">
+                <div class="col-8 col-lg-6">
                   <InputField
                     id="time"
                     title="Start Time*"
@@ -326,16 +406,9 @@ const getDay = computed(() => {
                     v-model="event.ageStart"
                     :data="options.ages"
                     required
-                    nowrapper
                   />
-                  <span>To</span>
-                  <InputField
-                    type="select"
-                    v-model="event.ageEnd"
-                    :data="options.ages"
-                    required
-                    nowrapper
-                  />
+                  <span class="mb-3">To</span>
+                  <InputField type="select" v-model="event.ageEnd" :data="options.ages" required />
                 </div>
               </div>
               <div class="col">
@@ -374,67 +447,75 @@ const getDay = computed(() => {
             >
             <div class="d-flex gap-1 align-items-center mb-2">
               <InputField id="occur-1" v-model="event.occur1" type="checkbox" nowrapper />
-              <InputField
-                type="select"
-                :selected="curDate"
-                :data="options.days"
-                nowrapper
-                forceselect
-              />
-              <InputField
-                type="select"
-                :selected="curMonth"
-                :data="options.months"
-                nowrapper
-                forceselect
-              />
-              <InputField
-                type="select"
-                :selected="curYear"
-                :data="options.years"
-                nowrapper
-                forceselect
-              />
-              @
-              <InputField
-                type="select"
-                v-model="event.setTime1"
-                :data="options.times"
-                :required="event.occur1"
-                nowrapper
-              />
+              <div class="d-flex flex-wrap gap-1 align-items-center">
+                <InputField
+                  type="select"
+                  className="mb-0"
+                  :selected="curDate"
+                  :data="options.days"
+                  forceselect
+                />
+                <InputField
+                  type="select"
+                  className="mb-0"
+                  :selected="curMonth"
+                  :data="options.months"
+                  forceselect
+                />
+                <InputField
+                  type="select"
+                  className="mb-0"
+                  :selected="curYear"
+                  :data="options.years"
+                  forceselect
+                />
+                <div class="d-flex gap-1 align-items-center mb-2">
+                  @
+                  <InputField
+                    type="select"
+                    className="mb-0"
+                    v-model="event.setTime1"
+                    :data="options.times"
+                    :required="event.occur1"
+                  />
+                </div>
+              </div>
             </div>
             <div class="d-flex gap-1 align-items-center mb-2">
               <InputField id="occur-2" v-model="event.occur2" type="checkbox" nowrapper />
-              <InputField
-                type="select"
-                :selected="curDate"
-                :data="options.days"
-                nowrapper
-                forceselect
-              />
-              <InputField
-                type="select"
-                :selected="curMonth"
-                :data="options.months"
-                nowrapper
-                forceselect
-              />
-              <InputField
-                type="select"
-                :selected="curYear"
-                :data="options.years"
-                nowrapper
-                forceselect
-              />
-              @
-              <InputField
-                type="select"
-                v-model="event.setTime2"
-                :data="options.times"
-                :required="event.occur2"
-                nowrapper
-              />
+              <div class="d-flex flex-wrap gap-1 align-items-center">
+                <InputField
+                  type="select"
+                  className="mb-0"
+                  :selected="curDate"
+                  :data="options.days"
+                  forceselect
+                />
+                <InputField
+                  type="select"
+                  className="mb-0"
+                  :selected="curMonth"
+                  :data="options.months"
+                  forceselect
+                />
+                <InputField
+                  type="select"
+                  className="mb-0"
+                  :selected="curYear"
+                  :data="options.years"
+                  forceselect
+                />
+                <div class="d-flex gap-1 align-items-center mb-2">
+                  @
+                  <InputField
+                    type="select"
+                    className="mb-0"
+                    v-model="event.setTime2"
+                    :data="options.times"
+                    :required="event.occur2"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div v-if="event.eventPick == '1'">
@@ -453,11 +534,13 @@ const getDay = computed(() => {
               title="Event Description"
               type="textarea"
               v-model="event.fullEventDesc"
+              rows="10"
               helper="Add detailed information about your event, no emoji"
             />
             <InputField
               id="venueaddress"
               title="Venue & Address*"
+              v-model="event.venueAddress"
               type="textarea"
               helper="Max 200 characters"
               limit="200"
@@ -467,6 +550,7 @@ const getDay = computed(() => {
               id="dresscode"
               rows="5"
               title="Dress code"
+              v-model="event.dressCode"
               type="textarea"
               helper="Max 500 characters"
               limit="500"
@@ -475,6 +559,7 @@ const getDay = computed(() => {
               id="rules"
               rows="5"
               title="Rules"
+              v-model="event.rules"
               type="textarea"
               helper="Max 500 characters"
               limit="500"
@@ -491,6 +576,7 @@ const getDay = computed(() => {
               v-if="event.bookingUrl === ''"
               id="bookings"
               title="Bookings"
+              v-model="event.bookings"
               type="textarea"
               limit="200"
               helper="Max 200 characters"
@@ -498,6 +584,7 @@ const getDay = computed(() => {
             <InputField
               id="ctemail"
               title="Contact Email"
+              v-model="event.ctEmail"
               type="email"
               placeholder="john_doe@mail.com"
             />
@@ -505,12 +592,14 @@ const getDay = computed(() => {
             <InputField
               id="otcontact"
               title="Other Contact Info"
+              v-model="event.otContactInfo"
               type="textarea"
               helper="Max 200 characters"
             />
             <InputField
               id="cost"
               title="Cost*"
+              v-model="event.cost"
               type="textarea"
               helper="Max 200 characters"
               required
@@ -539,87 +628,11 @@ const getDay = computed(() => {
             />
             <!-- <InputField id="share" title="Share this on Facebook/Twitter" type="checkbox" className="mb-3" nowrapper /> -->
           </div>
-          <div class="d-block d-lg-none">
-            <h2 class="text-xl fw-bold mb-2">Event Listing Preview</h2>
-            <div class="border border-gray-300 p-3 mb-3">
-              <a href="#" class="d-block h4 underline text-primary" v-if="event.eventName">{{
-                event.eventName
-              }}</a>
-              <small class="text-xs fw-bold"
-                >{{ getDay }}, {{ event.dateVal }} {{ event.monthVal }} {{ event.yearVal }}
-                <span v-if="event.getTime">({{ event.getTime }})</span></small
-              >
-              <p v-if="event.eventDesc" class="mb-0">{{ event.eventDesc }}</p>
-              <p class="small text-success mb-0" v-if="event.eventType">
-                Event Type: <span class="fw-medium text-black">{{ event.eventType }}</span>
-              </p>
-              <p class="small text-success mb-0" v-if="event.ageStart && event.ageEnd">
-                Age Group:
-                <span class="fw-medium text-black">{{ event.ageStart }} - {{ event.ageEnd }}</span>
-              </p>
-              <p class="small text-success mb-0">
-                Location:
-                <span class="fw-medium text-black"
-                  >{{ event.stateLoc
-                  }}<span v-if="event.suburbLoc">, {{ event.suburbLoc }}</span></span
-                >
-              </p>
-              <a
-                href="#"
-                target="_blank"
-                v-if="event.eventPick == '1'"
-                class="text-blue-700 underline text-xs"
-                >More Info</a
-              >
-            </div>
-            <p class="mb-2" v-if="emailParam">
-              Event for: <span class="d-block fst-italic fw-bold">{{ emailParam }}</span>
-            </p>
-          </div>
           <div class="d-flex gap-3 justify-content-end">
             <RouterLink to="/" class="btn text-center">Cancel</RouterLink>
             <button type="submit" class="btn btn-primary text-center">Submit Event</button>
           </div>
         </form>
-      </div>
-      <div
-        class="d-none d-lg-block col-12 col-lg-4 position-sticky align-self-baseline"
-        style="top: 60px"
-      >
-        <h4 class="text-xl fw-bold mb-2">Event Listing Preview</h4>
-        <div class="border border-gray-300 p-3 mb-3">
-          <a href="#" class="d-block h4 underline text-primary" v-if="event.eventName">{{
-            event.eventName
-          }}</a>
-          <small class="text-xs fw-bold"
-            >{{ getDay }}, {{ event.dateVal }} {{ event.monthVal }} {{ event.yearVal }}
-            <span v-if="event.getTime">({{ event.getTime }})</span></small
-          >
-          <p v-if="event.eventDesc" class="mb-0">{{ event.eventDesc }}</p>
-          <p class="small text-success mb-0" v-if="event.eventType">
-            Event Type: <span class="fw-medium text-black">{{ event.eventType }}</span>
-          </p>
-          <p class="small text-success mb-0" v-if="event.ageStart && event.ageEnd">
-            Age Group:
-            <span class="fw-medium text-black">{{ event.ageStart }} - {{ event.ageEnd }}</span>
-          </p>
-          <p class="small text-success mb-0">
-            Location:
-            <span class="fw-medium text-black"
-              >{{ event.stateLoc }}<span v-if="event.suburbLoc">, {{ event.suburbLoc }}</span></span
-            >
-          </p>
-          <a
-            href="#"
-            target="_blank"
-            v-if="event.eventPick == '1'"
-            class="text-blue-700 underline text-xs"
-            >More Info</a
-          >
-        </div>
-        <p class="mb-2" v-if="emailParam">
-          Event for: <span class="d-block fst-italic fw-bold">{{ emailParam }}</span>
-        </p>
       </div>
     </div>
   </div>

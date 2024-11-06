@@ -17,6 +17,10 @@
   font-weight: 500;
 }
 
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
 .bg-amber {
   background-color: rgb(254 243 199);
 }
