@@ -5,8 +5,13 @@ defineProps({
   title: {
     type: String,
     default: '<<Title goes here>>'
+  },
+  is_wide: {
+    type: Boolean,
+    default: false
   }
 });
+
 let modalEle = ref(null);
 let thisModalObj: Modal | null = null;
 
@@ -32,10 +37,10 @@ defineExpose({ show: _show });
     aria-hidden="true"
     ref="modalEle"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog" :style="is_wide ? 'max-width: 800px' : ''">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+          <h5 class="modal-title" v-if="title" id="exampleModalLabel">{{ title }}</h5>
           <button
             type="button"
             class="btn-close"
@@ -46,7 +51,7 @@ defineExpose({ show: _show });
         <div class="modal-body">
           <slot name="body" />
         </div>
-        <div class="modal-footer">
+        <div v-if="$slots.footer" class="modal-footer">
           <slot name="footer"></slot>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>

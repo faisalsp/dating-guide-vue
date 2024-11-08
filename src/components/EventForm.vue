@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router';
 import { defineComponent, ref, computed } from 'vue';
 import InputField from './InputField.vue';
 import AjaxInput from './AjaxInput.vue';
+import ModalBox from '@/components/ModalBox.vue';
 
 defineComponent({ name: 'EventForm' });
 interface Event {
@@ -49,6 +50,14 @@ const is_admin = route.matched[0].path === '/admin' ? true : false;
 const idParam = Number(route.params.id);
 const emailParam = route.query.email;
 
+let editModal = ref(null);
+
+function previewEvent() {
+  if (editModal.value) {
+    (editModal.value as any).show();
+  }
+}
+
 const events = ref<string[]>([
   'Speed Dating',
   'Singles Events',
@@ -83,12 +92,23 @@ const curMonth = ref<string>(listMonths.value[currentDate.getMonth()]);
 const curYear = ref<number>(currentDate.getFullYear());
 
 const getTimes = (start: string, end: string): string[] => {
-  start = (parseInt(start) * 2 + (+start.slice(-2) > 0 ? 1 : 0)).toString();
-  end = (parseInt(end) * 2 + (+end.slice(-2) > 0 ? 1 : 0) + 1).toString();
-  return Array.from({ length: Number(end) - Number(start) }, (_, i) => [
-    (i + Number(start)) >> 1,
-    (Number(i + start) % 2) * 30
-  ]).map(([h, m]) => `${h % 12 || 12}:${m} ${'AP'[+(h > 11)]}M`.replace(/\b\d\b/g, '0$&'));
+  const startTime = start.split(':').map(Number);
+  const endTime = end.split(':').map(Number);
+  const interval = 30; // 30 minutes
+  const timeList: string[] = [];
+
+  for (let hour = startTime[0]; hour <= endTime[0]; hour++) {
+    for (
+      let minute = hour === startTime[0] ? startTime[1] : 0;
+      minute <= (hour === endTime[0] ? endTime[1] : 59);
+      minute += interval
+    ) {
+      const formattedTime = `${hour % 12 || 12}:${minute.toString().padStart(2, '0')} ${hour < 12 ? 'AM' : 'PM'}`;
+      timeList.push(formattedTime);
+    }
+  }
+
+  return timeList;
 };
 
 const event = ref<Event>({
@@ -190,73 +210,7 @@ const getDay = computed(() => {
             Event Listing that Links to My Website
           </h2>
           <hr />
-          <div class="">
-            <h3 class="h5 fw-bold mb-3">Event Listing Preview</h3>
-            <div class="mb-3">
-              <img src="https://placehold.co/500x130" class="w-100 mb-3" alt="" />
-              <h4 href="#" class="d-block h4 underline" v-if="event.eventName">
-                {{ event.eventName }}
-              </h4>
-              <small class="d-block fw-bold mb-3"
-                >{{ getDay }}, {{ event.dateVal }} {{ event.monthVal }} {{ event.yearVal }}
-                <span v-if="event.getTime">({{ event.getTime }})</span></small
-              >
-              <p v-if="event.eventDesc && event.eventPick == '2'" class="mb-0 pre-wrap">
-                {{ event.eventDesc }}
-              </p>
-              <p v-if="event.fullEventDesc" class="mb-0 pre-wrap">{{ event.fullEventDesc }}</p>
-              <div class="table-responsive mt-3">
-                <table class="table auto">
-                  <tbody>
-                    <tr v-if="event.venueAddress">
-                      <td><span class="fw-bold">Venue:</span></td>
-                      <td class="pre-wrap">{{ event.venueAddress }}</td>
-                    </tr>
-                    <tr v-if="event.cost">
-                      <td><span class="fw-bold">Cost:</span></td>
-                      <td class="pre-wrap">{{ event.cost }}</td>
-                    </tr>
-                    <tr v-if="event.otContactInfo">
-                      <td><span class="fw-bold">Contact Info:</span></td>
-                      <td class="pre-wrap">
-                        {{ event.otContactInfo }}
-                      </td>
-                    </tr>
-                    <tr v-if="event.bookings">
-                      <td><span class="fw-bold">Bookings:</span></td>
-                      <td class="pre-wrap">
-                        {{ event.bookings }}
-                      </td>
-                    </tr>
-                    <tr v-if="event.dressCode">
-                      <td><span class="fw-bold">Dress Code:</span></td>
-                      <td class="pre-wrap">{{ event.dressCode }}</td>
-                    </tr>
-                    <tr v-if="event.rules">
-                      <td><span class="fw-bold">Rules:</span></td>
-                      <td class="pre-wrap">{{ event.rules }}</td>
-                    </tr>
-                    <tr v-if="event.ctEmail">
-                      <td><span class="fw-bold">Contact Email:</span></td>
-                      <td>
-                        <a
-                          :href="`mailto:${event.ctEmail}?subject=&amp;body=Inquiring%20about%20event%20on%20-%20${getDay}, ${event.dateVal} ${event.monthVal} ${event.yearVal}%20%20%20${event.getTime}`"
-                          >email event organiser
-                        </a>
-                      </td>
-                    </tr>
-                    <tr v-if="event.website">
-                      <td><span class="fw-bold">Website:</span></td>
-                      <td>
-                        <a :href="event.website" target="_blank">{{ event.website }}</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <h3 class="h5 fw-bold mb-2">Please enter your event details below:</h3>
-          </div>
+          <h3 class="h5 fw-bold mb-2">Please enter your event details below:</h3>
           <InputField
             id="eventName"
             title="Event Name*"
@@ -629,8 +583,78 @@ const getDay = computed(() => {
             />
             <!-- <InputField id="share" title="Share this on Facebook/Twitter" type="checkbox" className="mb-3" nowrapper /> -->
           </div>
+          <ModalBox title="Event Listing Preview" ref="editModal" is_wide>
+            <template #body>
+              <div class="">
+                <div class="mb-3">
+                  <img src="https://placehold.co/500x150" class="w-100 mb-3" alt="" />
+                  <h4 href="#" class="d-block h4 underline" v-if="event.eventName">
+                    {{ event.eventName }}
+                  </h4>
+                  <small class="d-block fw-bold mb-3"
+                    >{{ getDay }}, {{ event.dateVal }} {{ event.monthVal }} {{ event.yearVal }}
+                    <span v-if="event.getTime">({{ event.getTime }})</span></small
+                  >
+                  <p v-if="event.eventDesc && event.eventPick == '2'" class="mb-0 pre-wrap">
+                    {{ event.eventDesc }}
+                  </p>
+                  <p v-if="event.fullEventDesc" class="mb-0 pre-wrap">{{ event.fullEventDesc }}</p>
+                  <div class="table-responsive mt-3">
+                    <table class="table auto">
+                      <tbody>
+                        <tr v-if="event.venueAddress">
+                          <td><span class="fw-bold">Venue:</span></td>
+                          <td class="pre-wrap">{{ event.venueAddress }}</td>
+                        </tr>
+                        <tr v-if="event.cost">
+                          <td><span class="fw-bold">Cost:</span></td>
+                          <td class="pre-wrap">{{ event.cost }}</td>
+                        </tr>
+                        <tr v-if="event.otContactInfo">
+                          <td><span class="fw-bold">Contact Info:</span></td>
+                          <td class="pre-wrap">
+                            {{ event.otContactInfo }}
+                          </td>
+                        </tr>
+                        <tr v-if="event.bookings">
+                          <td><span class="fw-bold">Bookings:</span></td>
+                          <td class="pre-wrap">
+                            {{ event.bookings }}
+                          </td>
+                        </tr>
+                        <tr v-if="event.dressCode">
+                          <td><span class="fw-bold">Dress Code:</span></td>
+                          <td class="pre-wrap">{{ event.dressCode }}</td>
+                        </tr>
+                        <tr v-if="event.rules">
+                          <td><span class="fw-bold">Rules:</span></td>
+                          <td class="pre-wrap">{{ event.rules }}</td>
+                        </tr>
+                        <tr v-if="event.ctEmail">
+                          <td><span class="fw-bold">Contact Email:</span></td>
+                          <td>
+                            <a
+                              :href="`mailto:${event.ctEmail}?subject=&amp;body=Inquiring%20about%20event%20on%20-%20${getDay}, ${event.dateVal} ${event.monthVal} ${event.yearVal}%20%20%20${event.getTime}`"
+                              >email event organiser
+                            </a>
+                          </td>
+                        </tr>
+                        <tr v-if="event.website">
+                          <td><span class="fw-bold">Website:</span></td>
+                          <td>
+                            <a :href="event.website" target="_blank">{{ event.website }}</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </ModalBox>
           <div class="d-flex gap-3 justify-content-end">
             <RouterLink to="/" class="btn text-center">Cancel</RouterLink>
+            <button type="button" class="btn text-center" @click="previewEvent">Preview</button>
             <button type="submit" class="btn btn-primary text-center">Submit Event</button>
           </div>
         </form>
