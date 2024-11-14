@@ -47,6 +47,11 @@ const resolveRouteFromClick = (e: any) => {
     }
   }
 };
+
+const options = {
+  pageLength: 50,
+  lengthMenu: [25, 50, 100, 200]
+};
 </script>
 <template>
   <div class="mx-auto">
@@ -70,8 +75,8 @@ const resolveRouteFromClick = (e: any) => {
         </ul>
       </div>
       <RouterLink to="/admin/add-club" class="btn btn-primary"
-        ><i class="gigacon gigacon-plus-sign me-2"></i>Add club</RouterLink
-      >
+        ><i class="gigacon gigacon-plus-sign me-2"></i>Add club
+      </RouterLink>
     </div>
     <DataTable
       :columns="columns"
@@ -79,6 +84,7 @@ const resolveRouteFromClick = (e: any) => {
       @click="resolveRouteFromClick($event)"
       class="table table-hover table-striped"
       width="100%"
+      :options="options"
     >
       <thead>
         <tr>

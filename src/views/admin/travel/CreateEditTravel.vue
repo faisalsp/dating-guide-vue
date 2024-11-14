@@ -125,7 +125,7 @@ const getDayEnd = computed(() => {
             <div class="mb-2">
               <h2 class="fw-bold h4">Please select your Travel Listing Type</h2>
             </div>
-            <div class="bg-amber p-4">
+            <div class="bg-gray p-4">
               <InputField
                 id="event-1"
                 type="radio"

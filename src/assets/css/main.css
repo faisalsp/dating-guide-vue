@@ -17,12 +17,24 @@
   font-weight: 500;
 }
 
+.badge.bg-danger {
+  background-color: #ff8989 !important;
+}
+
+.badge.bg-success {
+  background-color: #7abd91 !important;
+}
+
 .pre-wrap {
   white-space: pre-wrap;
 }
 
-.bg-amber {
-  background-color: rgb(254 243 199);
+table .badge {
+  min-width: 70px;
+}
+
+.bg-gray {
+  background-color: #bcb4b4;
 }
 
 .hover-grey:hover {

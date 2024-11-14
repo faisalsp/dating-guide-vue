@@ -9,7 +9,7 @@ interface Options {
   states: { [key: string]: string };
 }
 
-const clubPick = ref('1');
+const clubPick = ref('2');
 
 const route = useRoute();
 const statex = ref('New South Wales');
@@ -41,7 +41,7 @@ const options = ref<Options>({
             <div class="mb-2">
               <h2 class="fw-bold h4">Listing type</h2>
             </div>
-            <div class="bg-amber p-4">
+            <div class="bg-gray p-4">
               <InputField
                 id="event-1"
                 type="radio"
@@ -177,20 +177,6 @@ const options = ref<Options>({
               id="lmmsite"
               title="LesbianMatchMaker.com.au"
               value="LesbianMatchMaker.com.au"
-              type="checkbox"
-              nowrapper
-            />
-            <InputField
-              id="lovesite"
-              title="LoveClub.com.au"
-              value="LoveClub.com.au"
-              type="checkbox"
-              nowrapper
-            />
-            <InputField
-              id="aussiesite"
-              title="AussieMatchMaker.com.au"
-              value="AussieMatchMaker.com.au"
               type="checkbox"
               nowrapper
             />

@@ -14,6 +14,7 @@ defineComponent({ name: 'PendingTravelEvents' });
         ></span
       >
     </div>
+    <button type="submit" class="btn btn-success text-center mb-3">Approve All Events</button>
     <div class="row g-3">
       <div v-for="index in 3" :key="index" class="col-md-6">
         <div class="card">
@@ -47,14 +48,6 @@ defineComponent({ name: 'PendingTravelEvents' });
                 <InputField :id="'adultMM' + index" type="checkbox" title="AdultMM" nowrapper />
                 <InputField :id="'gayMM' + index" type="checkbox" title="GayMM" nowrapper />
                 <InputField :id="'lesbianMM' + index" type="checkbox" title="LesbianMM" nowrapper />
-                <InputField :id="'loveclub' + index" type="checkbox" title="LoveClub" nowrapper />
-                <InputField
-                  :id="'hothookups' + index"
-                  type="checkbox"
-                  title="HotHookups"
-                  nowrapper
-                />
-                <InputField :id="'aussieMM' + index" type="checkbox" title="AussieMM" nowrapper />
               </div>
               <small class="my-2 d-block text-xs fw-bold fst-italic"
                 >Submitted by: <span class="fw-medium text-black">John Doe</span></small

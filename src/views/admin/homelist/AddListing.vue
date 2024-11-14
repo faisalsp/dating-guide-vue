@@ -15,6 +15,7 @@ const sites = ['adultmatchmaker.com.au', 'gaymatchmaker.com.au', 'lesbianmatchma
 const columns = [
   {
     data: 'start_date',
+    type: 'date',
     render: (data: string) => {
       const date = new Date(data);
       const options = {
@@ -38,6 +39,12 @@ const columns = [
     }
   }
 ];
+
+const options = {
+  order: [[1, 'asc']] as [number, 'asc' | 'desc'][],
+  pageLength: 50,
+  lengthMenu: [25, 50, 100, 200]
+};
 </script>
 <template>
   <div class="mx-auto">
@@ -63,7 +70,7 @@ const columns = [
       ajax="/data.json"
       class="table table-hover table-striped"
       width="100%"
-      :options="{ order: [[1, 'asc']] }"
+      :options="options"
     >
       <thead>
         <tr>

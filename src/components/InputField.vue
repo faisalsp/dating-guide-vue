@@ -180,8 +180,15 @@ watch(
   </div>
   <div v-if="type === 'checkbox'" :class="nowrapper ? className : 'mb-3'">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" v-model="textModel" :value="value" :id="id" />
-      <label class="form-check-label small" :for="id">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        v-model="textModel"
+        :value="value"
+        :id="id"
+        :checked="!!checked"
+      />
+      <label v-if="title" class="form-check-label small" :for="id">
         {{ title }}
       </label>
     </div>

@@ -17,6 +17,7 @@ const columns = [
   },
   {
     data: 'start_date',
+    type: 'date',
     render: (data: string) => {
       const date = new Date(data);
       const options = {
@@ -59,6 +60,10 @@ const resolveRouteFromClick = (e: any) => {
     }
   }
 };
+const options = {
+  pageLength: 50,
+  lengthMenu: [25, 50, 100, 200]
+};
 </script>
 <template>
   <div class="mx-auto">
@@ -92,6 +97,7 @@ const resolveRouteFromClick = (e: any) => {
       @click="resolveRouteFromClick($event)"
       class="table table-hover table-striped"
       width="100%"
+      :options="options"
     >
       <thead>
         <tr>

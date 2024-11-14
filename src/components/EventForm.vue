@@ -181,7 +181,7 @@ const getDay = computed(() => {
             <div class="mb-2">
               <h2 class="fw-bold h4">Event Listing type</h2>
             </div>
-            <div class="bg-amber p-4">
+            <div class="bg-gray p-4">
               <InputField
                 id="event-1"
                 name="eventpick"
@@ -247,7 +247,7 @@ const getDay = computed(() => {
             <div class="mb-2">
               <h2 class="fw-bold h4">Venue Location*</h2>
             </div>
-            <div class="bg-amber p-3">
+            <div class="bg-gray p-3">
               <div class="row">
                 <div class="col-lg-6">
                   <InputField
@@ -281,7 +281,7 @@ const getDay = computed(() => {
             <div class="mb-2">
               <h2 class="fw-bold h4">Date & Time of Event*</h2>
             </div>
-            <div class="bg-amber p-3">
+            <div class="bg-gray p-3">
               <div class="row">
                 <div class="col-lg-6">
                   <span class="d-block mb-2 small fw-medium text-gray-900">Date*</span>

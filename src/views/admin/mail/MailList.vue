@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue';
 import InputField from '@/components/InputField.vue';
 
 defineComponent({ name: 'MailList' });
-const search = ['Mail Unresponded to', "Marked as Don't Respond", 'Mail Responded to'];
+const search = ['Mail Unresponded to', "Marked as Don't Respond", 'Mail Responded to', 'Spam'];
 const searchModel = ref('Mail Unresponded to');
 </script>
 <template>
@@ -19,6 +19,7 @@ const searchModel = ref('Mail Unresponded to');
         type="select"
       />
     </div>
+
     <ul class="nav nav-underline mb-3" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -145,28 +146,61 @@ const searchModel = ref('Mail Unresponded to');
                 <div class="d-block d-lg-none">
                   <span class="d-block fw-bold">Reply</span>
                   <InputField type="textarea" className="mb-2 mt-3" rows="7" nowrapper />
-                  <InputField
-                    :id="`dontReply-mob-general-${i}`"
-                    title="Don't Reply"
-                    type="checkbox"
-                  />
+                  <div class="d-flex align-items-center my-3 gap-3 justify-content-between">
+                    <button
+                      type="submit"
+                      v-if="searchModel === 'Mail Unresponded to'"
+                      class="btn btn-primary text-center"
+                    >
+                      Reply
+                    </button>
+                    <InputField
+                      :id="`dontReply-mob-general-${i}`"
+                      title="Don't Reply"
+                      type="checkbox"
+                      nowrapper
+                    />
+                  </div>
                 </div>
               </td>
               <td class="p-3 d-none d-lg-table-cell">
                 <InputField type="textarea" className="mb-2 mt-3" rows="7" nowrapper />
-                <InputField :id="`dontReply-general-${i}`" title="Don't Reply" type="checkbox" />
+                <div class="d-flex align-items-center my-3 gap-3 justify-content-between">
+                  <button
+                    type="submit"
+                    v-if="searchModel === 'Mail Unresponded to'"
+                    class="btn btn-primary text-center"
+                  >
+                    Reply
+                  </button>
+                  <InputField
+                    :id="`dontReply-general-${i}`"
+                    title="Don't Reply"
+                    type="checkbox"
+                    nowrapper
+                  />
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <button
-            type="submit"
-            v-if="searchModel === 'Mail Unresponded to'"
-            class="btn btn-primary text-center"
-          >
-            Submit: Replies are Emailed and show next messages
-          </button>
+          <div class="d-flex flex-wrap gap-2">
+            <button
+              type="submit"
+              v-if="searchModel === 'Mail Unresponded to'"
+              class="btn btn-primary text-center"
+            >
+              Submit: Replies are Emailed and show next messages
+            </button>
+            <button
+              type="button"
+              v-if="searchModel === 'Mail Unresponded to'"
+              class="btn btn-danger text-center"
+            >
+              Move All to Spam folder
+            </button>
+          </div>
           <nav aria-label="...">
             <ul class="pagination mb-0">
               <li class="page-item disabled">
@@ -220,24 +254,61 @@ const searchModel = ref('Mail Unresponded to');
                 <div class="d-block d-lg-none">
                   <span class="d-block fw-bold">Reply</span>
                   <InputField type="textarea" className="mb-2 mt-3" rows="7" nowrapper />
-                  <InputField :id="`dontReply-mob-ads-${i}`" title="Don't Reply" type="checkbox" />
+                  <div class="d-flex align-items-center my-3 gap-3 justify-content-between">
+                    <button
+                      type="submit"
+                      v-if="searchModel === 'Mail Unresponded to'"
+                      class="btn btn-primary text-center"
+                    >
+                      Reply
+                    </button>
+                    <InputField
+                      :id="`dontReply-mob-ads-${i}`"
+                      title="Don't Reply"
+                      type="checkbox"
+                      nowrapper
+                    />
+                  </div>
                 </div>
               </td>
               <td class="p-3 d-none d-lg-table-cell">
                 <InputField type="textarea" className="mb-2 mt-3" rows="7" nowrapper />
-                <InputField :id="`dontReply-ads-${i}`" title="Don't Reply" type="checkbox" />
+                <div class="d-flex align-items-center my-3 gap-3 justify-content-between">
+                  <button
+                    type="submit"
+                    v-if="searchModel === 'Mail Unresponded to'"
+                    class="btn btn-primary text-center"
+                  >
+                    Reply
+                  </button>
+                  <InputField
+                    :id="`dontReply-ads-${i}`"
+                    title="Don't Reply"
+                    type="checkbox"
+                    nowrapper
+                  />
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <button
-            type="submit"
-            v-if="searchModel === 'Mail Unresponded to'"
-            class="btn btn-primary text-center"
-          >
-            Submit: Replies are Emailed and show next messages
-          </button>
+          <div class="d-flex flex-wrap gap-2">
+            <button
+              type="submit"
+              v-if="searchModel === 'Mail Unresponded to'"
+              class="btn btn-primary text-center"
+            >
+              Submit: Replies are Emailed and show next messages
+            </button>
+            <button
+              type="button"
+              v-if="searchModel === 'Mail Unresponded to'"
+              class="btn btn-danger text-center"
+            >
+              Move All to Spam folder
+            </button>
+          </div>
         </div>
       </div>
       <div

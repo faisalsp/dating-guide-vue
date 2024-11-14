@@ -98,7 +98,7 @@ const idParam = Number(route.params.id);
         </tbody>
       </table>
     </div>
-    <div class="max-w-md bg-amber p-3">
+    <div class="max-w-md bg-gray p-3">
       <small>Please enter your sponsored Ad details below</small>
       <h2 class="h4">Sponsored Ad & Featured Ad (required)</h2>
       <InputField

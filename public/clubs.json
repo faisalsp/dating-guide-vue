@@ -99,6 +99,26 @@
       "clubId": 20,
       "clubName": "Zephyr FC",
       "status": "Active"
+    },
+    {
+      "clubId": 121,
+      "clubName": "Aurora FC",
+      "status": "Active"
+    },
+    {
+      "clubId": 122,
+      "clubName": "Solar Flare",
+      "status": "Active"
+    },
+    {
+      "clubId": 123,
+      "clubName": "Lunar Legion",
+      "status": "Active"
+    },
+    {
+      "clubId": 220,
+      "clubName": "Galactic Squad",
+      "status": "Active"
     }
   ]
 }
