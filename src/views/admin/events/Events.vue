@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import InputField from '@/components/InputField.vue';
 import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-bs5';
 
@@ -69,6 +70,15 @@ const options = {
 <template>
   <div class="mx-auto">
     <h1 class="h2 font-bold mb-3">Event List</h1>
+    <div class="w-lg-50 mx-auto bg-gray p-4 mb-4">
+      <h2>Find Event</h2>
+      <p>Enter first few letters for your search in either one or both fields</p>
+      <InputField type="text" id="search" placeholder="Event Title" />
+      <div class="d-flex gap-2">
+        <InputField type="email" id="email" className="w-100" placeholder="Email" nowrapper />
+        <button type="submit" class="btn btn-primary px-3 px-lg-5">Search</button>
+      </div>
+    </div>
     <div class="d-flex gap-2 flex-wrap align-items-center">
       <div class="dropdown">
         <button

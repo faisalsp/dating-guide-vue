@@ -72,7 +72,7 @@ const options = {
         type="select"
         forceselect
       />
-      <RouterLink to="/admin/sponsored/add" class="btn btn-primary"
+      <RouterLink to="/admin/sponsored/add/ads" class="btn btn-primary"
         ><i class="gigacon gigacon-plus-sign me-2"></i>New</RouterLink
       >
     </div>

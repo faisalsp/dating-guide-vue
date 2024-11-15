@@ -40,6 +40,10 @@ const router = createRouter({
           component: () => import('@/views/admin/sponsored/Sponsored.vue')
         },
         {
+          path: 'sponsored/add/ads',
+          component: () => import('@/views/admin/sponsored/AddSponsoredAds.vue')
+        },
+        {
           path: 'sponsored/add',
           component: () => import('@/views/admin/sponsored/CreateEditSponsored.vue')
         },
@@ -90,6 +94,10 @@ const router = createRouter({
         {
           path: 'travel/travel-sponsored',
           component: () => import('@/views/admin/travel/TravelSponsored.vue')
+        },
+        {
+          path: 'travel/travel-sponsored/add/ads',
+          component: () => import('@/views/admin/travel/sponsored/AddSponsoredAds.vue')
         },
         {
           path: 'travel/travel-sponsored/add',

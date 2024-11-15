@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router';
       ><img src="@/assets/images/logo.png" class="ms-2" alt="Logo" />
     </RouterLink>
 
-    <ul class="navbar-nav flex-row d-md-none">
+    <ul class="navbar-nav flex-row d-lg-none">
       <li class="nav-item text-nowrap">
         <button
           class="nav-link px-3"
@@ -27,9 +27,9 @@ import { RouterLink, RouterView } from 'vue-router';
 
   <div class="container-fluid">
     <div class="row">
-      <div class="h-100 sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+      <div class="h-100 sidebar border border-right col-lg-2 p-0 bg-body-tertiary">
         <div
-          class="offcanvas-md offcanvas-end bg-body-tertiary overflow-y-auto h-100"
+          class="offcanvas-lg offcanvas-end bg-body-tertiary overflow-y-auto h-100"
           tabindex="-1"
           id="sidebarMenu"
           aria-labelledby="sidebarMenuLabel"
@@ -44,7 +44,7 @@ import { RouterLink, RouterView } from 'vue-router';
               aria-label="Close"
             ></button>
           </div>
-          <div class="mt-lg-5 offcanvas-body d-md-flex flex-column p-0 pt-lg-3">
+          <div class="mt-lg-5 offcanvas-body d-lg-flex flex-column p-0 pt-lg-3">
             <ul class="nav flex-column">
               <li class="nav-item">
                 <button
@@ -190,7 +190,7 @@ import { RouterLink, RouterView } from 'vue-router';
         </div>
       </div>
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 my-5">
+      <main class="col-lg-9 ms-sm-auto col-lg-10 px-md-4 my-5">
         <RouterView class="container mx-auto py-3 mt-4" />
       </main>
     </div>

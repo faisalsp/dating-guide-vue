@@ -47,8 +47,7 @@ const columns = [
     data: 'id',
     orderable: false,
     render: (data: string, type: any, row: { id: number }) => {
-      return `<a href="#" class="ms-3 text-dark text-decoration-none edit" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>
-      <a href="#" class="ms-3 text-dark text-decoration-none add" data-item-id='${row.id}'><i class="gigacon gigacon-star me-1"></i>Select</a>`;
+      return `<a href="#" class="ms-3 text-dark text-decoration-none edit" data-item-id='${row.id}'><i class="gigacon gigacon-edit me-1"></i>Edit</a>`;
     }
   }
 ];
@@ -112,6 +111,9 @@ const options = {
           <li><a class="dropdown-item" href="#">Resume</a></li>
         </ul>
       </div>
+      <RouterLink to="/admin/travel/travel-sponsored/add/ads" class="btn btn-primary">
+        <i class="gigacon gigacon-plus-sign me-2"></i>Add
+      </RouterLink>
     </div>
     <DataTable
       :columns="columns"
