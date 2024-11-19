@@ -4,6 +4,21 @@
   position: fixed;
 }
 
+.btn-primary {
+  background-color: #9aa4ec !important;
+  border-color: #9aa4ec !important;
+}
+
+.btn-danger {
+  background-color: #f48882 !important;
+  border-color: #f48882 !important;
+}
+
+.btn-success {
+  background-color: #4caa2b !important;
+  border-color: #4caa2b !important;
+}
+
 .sidebar .nav-link {
   font-size: 0.875rem;
   font-weight: 500;
