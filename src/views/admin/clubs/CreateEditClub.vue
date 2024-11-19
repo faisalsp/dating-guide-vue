@@ -191,7 +191,7 @@ const options = ref<Options>({
           />
           <InputField
             id="detailimg"
-            title="Details image"
+            title="Details image (Optional)"
             v-if="clubPick === '2'"
             type="file"
             accept="image/jpeg, image/jpg, image/gif"
