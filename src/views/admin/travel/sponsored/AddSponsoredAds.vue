@@ -54,12 +54,7 @@ const options = ref<Options>({
 });
 
 const columns = [
-  {
-    data: 'id',
-    render: (data: number) => {
-      return `<input type="checkbox" class="me-3" value="${data}">${data}`;
-    }
-  },
+  { data: 'id', className: 'text-start' },
   {
     data: 'start_date',
     type: 'date',
